@@ -1,0 +1,448 @@
+@import "tailwindcss";
+
+/* @config "tailwind.config.js"; */
+@theme {
+ --color-brown-50: #ECE7E4;
+ --color-brown-100: #DCD3CC;
+ --color-brown-200: #B8A698;
+ --color-brown-300: #947A66;
+ --color-brown-400: #615043;
+ --color-brown-500: #2D251F;
+ --color-brown-600: #241E19;
+ --color-brown-700: #1B1613;
+ --color-brown-800: #120F0C;
+ --color-brown-900: #090706;
+ --color-brown-950: #030202;
+
+ --font-open-sans: 'Open Sans', sans-serif;
+ --font-elite: 'Special Elite', sans-serif;
+}
+
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-elite), sans-serif;
+  }
+}
+
+:root {
+  --foreground-rgb: 0, 0, 0; /* rgb(0, 0, 0) */
+  --background-start-rgb: 214, 219, 220; /* rgb(214, 219, 220) */
+  --background-end-rgb: 255, 255, 255;  /* rgb(255, 255, 255) */
+  --pink-600: 337 68% 42%;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255; /* rgb(255, 255, 255) */
+    --background-start-rgb: 0, 0, 0; /* rgb(0, 0, 0) */
+    --background-end-rgb: 0, 0, 0; /* rgb(0, 0, 0) */
+  }
+}
+
+body {
+  /* color: rgb(var(--foreground-rgb)); */
+  color: #000;
+}
+
+.sans-serif {
+  font-family: var(--font-sans), sans-serif;
+}
+
+.featured-link {
+  @reference font-semibold text-brown-500 hover:text-brown-900 dark:text-brown-200 dark:hover:text-brown-100 ring-offset-background focus:outline-none focus:ring-1 focus:ring-ring focus:ring-offset-1
+}
+
+
+/* Custom styles for video player */
+.video-container {
+  position: relative;
+  width: 100%;
+  min-height: 480px; /* Minimum height for better visibility */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .video-container {
+    min-height: 540px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .video-container {
+    min-height: 600px;
+  }
+}
+
+.video-section {
+  width: 100%;
+  /* padding: 1rem; */
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.dark .video-section {
+  background-color: #1f2937;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.dark .video-section .video-controls {
+  background-color: #374151;
+}
+
+.dark .video-section button {
+  color: #e5e7eb;
+}
+
+/* .dark .video-section button:hover {
+  background-color: #4b5563;
+} */
+
+.dark .video-section .time-display {
+  color: #e5e7eb;
+}
+
+/* Slider styles */
+.dark .video-section .slider-track {
+  background-color: #374151;
+}
+
+.dark .video-section .slider-range {
+  background-color: var(--pink-600);
+}
+
+.dark .video-section .slider-thumb {
+  background-color: var(--pink-600);
+  border-color: #e5e7eb;
+}
+
+.dark .video-section .slider-thumb:hover {
+  background-color: #e11d48;
+}
+
+@layer base {
+  :root {
+    --background: 26.2 18.6% 83.1%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 26.2 18.6% 83.1%;
+    --card-foreground: 222.2 84% 4.9%;
+ 
+    --popover: 26.2 18.6% 83.1%;
+    --popover-foreground: 222.2 84% 4.9%; 
+ 
+    /* --primary: 337, 68.20%, 21.00%; */
+    --primary: var(--pink-600);
+    --primary-foreground: 26.2 18.6% 83.1%;
+ 
+    --secondary: 26.2 18.6% 83.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+ 
+    --muted: 26.2 18.6% 83.1%;
+    --muted-foreground: 25.7 18.4% 14.9%;
+ 
+    --accent: 26.2 18.6% 83.1%;
+    --accent-foreground: 25.7 18.4% 14.9%;
+ 
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 26.2 18.6% 83.1%;
+
+    --border: 26, 18.40%, 65.90%;
+    --input: 26, 18.40%, 65.90%;
+    --ring: 337 68% 42%;
+ 
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: var(--pink-600);
+    --foreground: 26.2 18.6% 83.1%;
+ 
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 26.2 18.6% 83.1%;
+ 
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 26.2 18.6% 83.1%;
+ 
+    --primary: var(--pink-600);
+    --primary-foreground: 26.2 18.6% 83.1%;
+ 
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 26.2 18.6% 83.1%;
+ 
+    --muted: 25.7 18.4% 14.9%;
+    --muted-foreground: 26.2 18.6% 83.1%;
+ 
+    --accent: 25.7 18.4% 14.9%;
+    --accent-foreground: 26.2 18.6% 83.1%;
+ 
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 26.2 18.6% 83.1%;
+ 
+    --border: 26, 18.30%, 32.20%;
+    --input: 26, 18.30%, 32.20%;
+    --ring: var(--pink-600);
+  }
+}
+
+@layer base {
+  * {
+    @reference border-border;
+  }
+  body {
+    @reference bg-brown-100 dark:bg-brown-800 text-foreground relative;
+  }
+  
+  /* Gradient background styles */
+  .gradient-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.3;
+  }
+  
+  /* Light mode gradient colors */
+  .light .gradient-background stop[class*="stop-color-brown-300"] {
+    stop-color: #947A66; /* brown-300 */
+  }
+  .light .gradient-background stop[class*="stop-color-brown-400"] {
+    stop-color: #615043; /* brown-400 */
+  }
+  .light .gradient-background stop[class*="stop-color-orange-400"] {
+    stop-color: #ED914A; /* orange-400 */
+  }
+  .light .gradient-background stop[class*="stop-color-orange-500"] {
+    stop-color: #E8741E; /* orange-500 */
+  }
+  .light .gradient-background stop[class*="stop-color-pink-300"] {
+    stop-color: #E987AC; /* pink-300 */
+  }
+  .light .gradient-background stop[class*="stop-color-pink-500"] {
+    stop-color: #D93472; /* pink-500 */
+  }
+  
+  /* Dark mode gradient colors */
+  .dark .gradient-background stop[class*="stop-color-brown-300"] {
+    stop-color: #B8A698; /* brown-200 - lighter for dark mode */
+  }
+  .dark .gradient-background stop[class*="stop-color-brown-400"] {
+    stop-color: #947A66; /* brown-300 - lighter for dark mode */
+  }
+  .dark .gradient-background stop[class*="stop-color-orange-400"] {
+    stop-color: #F1AD79; /* orange-300 - lighter for dark mode */
+  }
+  .dark .gradient-background stop[class*="stop-color-orange-500"] {
+    stop-color: #ED914A; /* orange-400 - lighter for dark mode */
+  }
+  .dark .gradient-background stop[class*="stop-color-pink-300"] {
+    stop-color: #F0ADC7; /* pink-200 - lighter for dark mode */
+  }
+  .dark .gradient-background stop[class*="stop-color-pink-500"] {
+    stop-color: #E987AC; /* pink-300 - lighter for dark mode */
+  }
+}
+
+/* Custom styles for video player */
+.video-container {
+  position: relative;
+  width: 100%;
+  background: black;
+}
+
+.video-container video {
+  width: 100%;
+  height: auto;
+}
+
+/* Custom styles for map */
+.map-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+/* Custom styles for controls */
+.controls-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.video-container:hover .controls-container {
+  opacity: 1;
+}
+
+/* Custom styles for key frame markers */
+.key-frames-container {
+  @reference relative w-full h-6 mt-1 flex items-center;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+
+.dark .key-frames-container {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.key-frames-container button.key-frame-marker {
+  @reference absolute cursor-pointer transition-all !important;
+  width: 1px !important;
+  height: 8px !important;
+  background-color: var(--pink-600) !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.dark .key-frames-container button.key-frame-marker {
+  background-color: var(--pink-600) !important;
+}
+
+.key-frames-container button.key-frame-marker:hover {
+  @reference z-10;
+  height: 12px !important;
+  background-color: var(--pink-600) !important;
+}
+
+/* Custom styles for route information */
+.route-info {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background-color: #f3f4f6;
+  border-radius: 0.5rem;
+}
+
+.dark .route-info {
+  background-color: #1f2937;
+}
+
+/* Custom styles for table */
+.table-container {
+  overflow-x: auto;
+  margin-top: 1rem;
+}
+
+.table-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-container th,
+.table-container td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.dark .table-container th,
+.dark .table-container td {
+  border-bottom-color: #374151;
+}
+
+/* Custom styles for buttons */
+.button-container {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+/* Custom styles for loading state */
+.loading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 16rem;
+}
+
+.loading-text {
+  font-size: 1.125rem;
+  color: #6b7280;
+}
+
+.dark .loading-text {
+  color: #9ca3af;
+}
+
+.bg {
+  animation:slide 30s ease-in-out infinite alternate;
+  background-image: linear-gradient(-60deg, #ECE7E4 50%, #DCD3CC 50%);
+  bottom:0;
+  left:-50%;
+  opacity:.5;
+  position:fixed;
+  right:-50%;
+  top:0;
+  z-index:-1;
+}
+
+.bg2 {
+  animation-direction:alternate-reverse;
+  animation-duration:20s;
+}
+
+.bg3 {
+  animation-duration:30s;
+}
+
+.dark .bg {
+  background-image: linear-gradient(-60deg, #030202 50%, #090706 50%);
+}
+
+@keyframes slide {
+  0% {
+    transform:translateX(-25%);
+  }
+  100% {
+    transform:translateX(25%);
+  }
+}
+
+/* Custom styles */
+.video-player {
+  @reference relative w-full;
+}
+
+.video-controls {
+  @reference absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity;
+}
+
+.route-info {
+  @reference mt-4 p-4 bg-brown-100 dark:bg-brown-800 rounded-lg;
+}
+
+.route-table {
+  @reference w-full border-collapse;
+}
+
+.route-table th,
+.route-table td {
+  @reference p-2 text-left border-b border-brown-200 dark:border-brown-700;
+}
+
+.route-table th {
+  @reference font-semibold text-brown-900 dark:text-brown-100;
+}
+
+.route-table tr:hover {
+  @reference bg-brown-50 dark:bg-brown-700;
+}
+
+.loading {
+  @reference flex items-center justify-center p-4;
+}
+
+.loading-spinner {
+  @reference animate-spin rounded-full h-8 w-8 border-4 border-primary border-t-transparent;
+}

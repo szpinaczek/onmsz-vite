@@ -1,0 +1,182 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+#root {
+  max-width: 1536px;
+  margin: 0 auto;
+  /* padding: 2rem; */
+  text-align: center;
+}
+
+/* @media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+} */
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+@theme {
+  --color-brown-50: #ece7e4;
+  --color-brown-100: #dcd3cc;
+  --color-brown-200: #b8a698;
+  --color-brown-300: #947a66;
+  --color-brown-400: #615043;
+  --color-brown-500: #2d251f;
+  --color-brown-600: #241e19;
+  --color-brown-700: #1b1613;
+  --color-brown-800: #120f0c;
+  --color-brown-900: #090706;
+  --color-brown-950: #030202;
+
+  --color-pink-50: #fbeaf0;
+  --color-pink-100: #f8d8e4;
+  --color-pink-200: #f0adc7;
+  --color-pink-300: #e987ac;
+  --color-pink-400: #e05c8f;
+  --color-pink-500: #d93472;
+  --color-pink-600: #b4225a;
+  --color-pink-700: #891a45;
+  --color-pink-800: #5a112d;
+  --color-pink-900: #2f0918;
+  --color-pink-950: #15040b;
+
+  --color-primary: var(--color-pink-600);
+
+  --font-open-sans: "Open Sans", sans-serif;
+  --font-elite: "Special Elite", sans-serif;
+}
+
+/* @theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+} */
+
+:root {
+  /* --color-primary: var(--color-pink-400); */
+  --background: 26 19% 83%;
+  --foreground: 222.2 84% 4.9%;
+
+  --card: 26.2 18.6% 83.1%;
+  --card-foreground: 222.2 84% 4.9%;
+
+  --popover: 26.2 18.6% 83.1%;
+  --popover-foreground: 222.2 84% 4.9%;
+
+  
+  --primary-foreground: 26.2 18.6% 83.1%;
+
+  --secondary: 26.2 18.6% 83.1%;
+  --secondary-foreground: 222.2 47.4% 11.2%;
+
+  --muted: 26.2 18.6% 83.1%;
+  --muted-foreground: 25.7 18.4% 14.9%;
+
+  --accent: 26.2 18.6% 83.1%;
+  --accent-foreground: 25.7 18.4% 14.9%;
+
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 26.2 18.6% 83.1%;
+
+  --border: 26, 18.4%, 65.9%;
+  --input: 26, 18.4%, 65.9%;
+  --ring: 337 68% 42%;
+
+  --radius: 0.5rem;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-elite), sans-serif;
+  }
+}
+
+.dark {
+  --color-primary: var(--color-brown-50);
+  --background: var(--pink-600);
+  --foreground: 26.2 18.6% 83.1%;
+
+  --card: 222.2 84% 4.9%;
+  --card-foreground: 26.2 18.6% 83.1%;
+
+  --popover: 222.2 84% 4.9%;
+  --popover-foreground: 26.2 18.6% 83.1%;
+
+  --primary-foreground: 26.2 18.6% 83.1%;
+
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 26.2 18.6% 83.1%;
+
+  --muted: 25.7 18.4% 14.9%;
+  --muted-foreground: 26.2 18.6% 83.1%;
+
+  --accent: 25.7 18.4% 14.9%;
+  --accent-foreground: 26.2 18.6% 83.1%;
+
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 26.2 18.6% 83.1%;
+
+  --border: 26, 18.3%, 32.2%;
+  --input: 26, 18.3%, 32.2%;
+  --ring: var(--pink-600);
+}
+
+@layer base {
+  * {
+    @reference border-border outline-ring/50;
+  }
+  body {
+    @reference bg-background text-foreground;
+  }
+}
+
+@utility container {
+
+  @variant sm {
+    padding-inline: 0;
+  }
+}
