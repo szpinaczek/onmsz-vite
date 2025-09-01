@@ -133,6 +133,9 @@
   h6 {
     font-family: var(--font-elite), sans-serif;
   }
+  * {
+    text-align: left;
+  } 
 }
 
 .dark {
@@ -174,6 +177,9 @@
   }
 }
 
+.featured-link {
+  @reference font-semibold text-brown-500 hover:text-brown-900 dark:text-brown-200 dark:hover:text-brown-100 ring-offset-background focus:outline-none focus:ring-1 focus:ring-ring focus:ring-offset-1;
+}
 @utility container {
 
   @variant sm {
