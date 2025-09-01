@@ -24,7 +24,12 @@
   color: #888;
 }
 
+body {
+    @reference bg-brown-100 dark:bg-brown-800 text-foreground relative;
+  }
+
 @theme {
+  
   --color-brown-50: #ece7e4;
   --color-brown-100: #dcd3cc;
   --color-brown-200: #b8a698;
@@ -94,7 +99,7 @@
 } */
 
 :root {
-  /* --color-primary: var(--color-pink-400); */
+  --color-primary: var(--color-pink-400);
   --background: 26 19% 83%;
   --foreground: 222.2 84% 4.9%;
 
@@ -135,7 +140,8 @@
   }
   * {
     text-align: left;
-  } 
+  }
+  
 }
 
 .dark {
@@ -172,9 +178,16 @@
   * {
     @reference border-border outline-ring/50;
   }
-  body {
+  /* body {
     @reference bg-background text-foreground;
-  }
+  } */
+}
+
+.dark body {
+  background-color: var(--color-brown-900);
+}
+.light body {
+  background-color: var(--color-brown-100);
 }
 
 .featured-link {
@@ -185,4 +198,204 @@
   @variant sm {
     padding-inline: 0;
   }
+}
+
+/* Custom styles for video player */
+.video-container {
+  position: relative;
+  width: 100%;
+  background: black;
+}
+
+.video-container video {
+  width: 100%;
+  height: auto;
+}
+
+/* Custom styles for map */
+.map-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+/* Custom styles for controls */
+.controls-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.video-container:hover .controls-container {
+  opacity: 1;
+}
+
+/* Custom styles for key frame markers */
+.key-frames-container {
+  @reference relative w-full h-6 mt-1 flex items-center;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+
+.dark .key-frames-container {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.key-frames-container button.key-frame-marker {
+  @reference absolute cursor-pointer transition-all !important;
+  width: 1px !important;
+  height: 8px !important;
+  background-color: var(--pink-600) !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.dark .key-frames-container button.key-frame-marker {
+  background-color: var(--pink-600) !important;
+}
+
+.key-frames-container button.key-frame-marker:hover {
+  @reference z-10;
+  height: 12px !important;
+  background-color: var(--pink-600) !important;
+}
+
+/* Custom styles for route information */
+.route-info {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background-color: #f3f4f6;
+  border-radius: 0.5rem;
+}
+
+.dark .route-info {
+  background-color: #1f2937;
+}
+
+/* Custom styles for table */
+.table-container {
+  overflow-x: auto;
+  margin-top: 1rem;
+}
+
+.table-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-container th,
+.table-container td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.dark .table-container th,
+.dark .table-container td {
+  border-bottom-color: #374151;
+}
+
+/* Custom styles for buttons */
+.button-container {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+/* Custom styles for loading state */
+.loading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 16rem;
+}
+
+.loading-text {
+  font-size: 1.125rem;
+  color: #6b7280;
+}
+
+.dark .loading-text {
+  color: #9ca3af;
+}
+
+.bg {
+  animation:slide 30s ease-in-out infinite alternate;
+  background-image: linear-gradient(-60deg, #ECE7E4 50%, #DCD3CC 50%);
+  bottom:0;
+  left:-50%;
+  opacity:.5;
+  position:fixed;
+  right:-50%;
+  top:0;
+  z-index:-1;
+}
+
+.bg2 {
+  animation-direction:alternate-reverse;
+  animation-duration:20s;
+}
+
+.bg3 {
+  animation-duration:30s;
+}
+
+.dark .bg {
+  background-image: linear-gradient(-60deg, #030202 50%, #090706 50%);
+}
+
+@keyframes slide {
+  0% {
+    transform:translateX(-25%);
+  }
+  100% {
+    transform:translateX(25%);
+  }
+}
+
+/* Custom styles */
+.video-player {
+  @reference relative w-full;
+}
+
+.video-controls {
+  @reference absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity;
+}
+
+.route-info {
+  @reference mt-4 p-4 bg-brown-100 dark:bg-brown-800 rounded-lg;
+}
+
+.route-table {
+  @reference w-full border-collapse;
+}
+
+.route-table th,
+.route-table td {
+  @reference p-2 text-left border-b border-brown-200 dark:border-brown-700;
+}
+
+.route-table th {
+  @reference font-semibold text-brown-900 dark:text-brown-100;
+}
+
+.route-table tr:hover {
+  @reference bg-brown-50 dark:bg-brown-700;
+}
+
+.loading {
+  @reference flex items-center justify-center p-4;
+}
+
+.loading-spinner {
+  @reference animate-spin rounded-full h-8 w-8 border-4 border-primary border-t-transparent;
 }

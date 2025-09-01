@@ -11,10 +11,10 @@ import { useState, useRef, useEffect } from 'react';
 import L from 'leaflet';
 import VideoPlayer, { type VideoPlayerHandle } from './components/video-player';
 import MapComponent from './components/map-section';
-import { Table } from 'lucide-react';
+// import { Table } from 'lucide-react';
 import { Button } from './components/ui/button';
 import { Card, CardContent } from './components/ui/card';
-import { TableBody, TableCell, TableHead, TableHeader, TableRow } from './components/ui/table';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './components/ui/table';
 import type { MapData, Language } from '@/types/map';
 
 interface MapComponentHandle {

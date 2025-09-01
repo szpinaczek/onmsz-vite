@@ -15,7 +15,7 @@ const Header = ({ language, handleLanguage }: HeaderProps) => {
   return (
     <>
         {/* Sticky header */}
-        <div className="sticky top-0 z-49 bg-brown-50 dark:bg-brown-700/80 backdrop-blur-sm border-b border-brown-100 dark:border-brown-700 py-4 px-4">
+        <div className="sticky top-0 z-1000 bg-brown-50 dark:bg-brown-700/80 backdrop-blur-sm border-b border-brown-100 dark:border-brown-700 py-4 px-4">
           <div className="flex flex-col md:flex-row justify-center md:justify-between items-center">
             <h1 className="text-lg font-bold text-primary">
               {getTranslation('title', language)}
