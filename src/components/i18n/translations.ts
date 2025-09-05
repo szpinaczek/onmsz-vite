@@ -1,5 +1,3 @@
-import { Fullscreen } from "lucide-react";
-
 export type Language = "pl" | "en";
 
 const translations = {
@@ -12,6 +10,7 @@ const translations = {
     location: "Lokalizacja",
     coordinates: "Współrzędne",
     distance: "Odległość",
+    progress: "Postęp",
     actions: "Akcje",
     jumpTo: "Przejdź",
     noInfo: "Brak informacji",
@@ -97,6 +96,7 @@ const translations = {
     location: "Location",
     coordinates: "Coordinates",
     distance: "Distance",
+    progress: "Progress",
     actions: "Actions",
     jumpTo: "Jump to",
     noInfo: "No information",

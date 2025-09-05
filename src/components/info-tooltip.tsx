@@ -169,7 +169,7 @@ const InfoTooltip: React.FC<InfoTooltipProps> = ({
         transition: isDragging ? 'none' : 'box-shadow 0.2s ease-in-out'
       }}
     >
-      <Card className={`rounded-sm gap-0 border border-brown-200 dark:border-brown-600 bg-brown-100/70 dark:bg-brown-800/50 backdrop-blur-sm py-0 ${isDragging ? 'shadow-xl' : 'shadow-lg'}`}>
+      <Card className={`rounded-sm gap-0 border border-brown-200 dark:border-brown-600 bg-brown-50/90 dark:bg-brown-800/50 backdrop-blur-sm py-0 ${isDragging ? 'shadow-xl' : 'shadow-lg'}`}>
         <div 
           className="rounded-t-sm p-0 cursor-grab active:cursor-grabbing flex justify-end items-center border-b border-brown-200 dark:border-brown-600 bg-brown-200/70 dark:bg-brown-800/40"
           onMouseDown={handleMouseDown}

@@ -404,7 +404,7 @@ const VideoPlayer = forwardRef<VideoPlayerHandle, VideoPlayerProps>(({ onTimeUpd
       </div>
 
       {/* Video controls below video */}
-      <div className="w-full bg-brown-200/60 dark:bg-brown-700 p-4 rounded-b-lg shadow-md">
+      <div className="w-full bg-brown-100 dark:bg-brown-700 p-4 rounded-b-lg shadow-sm shadow-brown-300/50 dark:shadow-brown-400/50">
         {/* Progress bar */}
         <div className="w-full mb-4 relative">
             <Slider
@@ -412,7 +412,7 @@ const VideoPlayer = forwardRef<VideoPlayerHandle, VideoPlayerProps>(({ onTimeUpd
               min={0}
               max={duration}
               step={0.01}
-            className="flex-grow slider-track bg-brown-300 dark:bg-pink-500"
+            className="flex-grow slider-track bg-transparent"
               onValueChange={handleSliderChange}
             />
           {/* Key frame markers - visible only on desktop */}
@@ -422,7 +422,7 @@ const VideoPlayer = forwardRef<VideoPlayerHandle, VideoPlayerProps>(({ onTimeUpd
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <button 
-                      className="absolute top-0 bottom-0 w-0.5 bg-brown-600 dark:bg-brown-50 hover:bg-brown-800 dark:hover:bg-brown-100 hover:scale-x-150 transition-transform origin-center pointer-events-auto"
+                      className="absolute top-0 bottom-0 w-0.5 bg-brown-600 dark:bg-pink-500 hover:bg-brown-800 dark:hover:bg-brown-100 hover:scale-x-150 transition-transform origin-center pointer-events-auto cursor-pointer"
                   style={{ left: `${(frame.time / duration) * 100}%` }}
                   onClick={(e) => {
                     e.stopPropagation();
@@ -525,7 +525,7 @@ const VideoPlayer = forwardRef<VideoPlayerHandle, VideoPlayerProps>(({ onTimeUpd
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>{isMuted ? getTranslation('muteButton', language) : getTranslation('unmuteButton', language)}</p>
+                  <p>{isMuted ? getTranslation('unmuteButton', language) : getTranslation('muteButton', language)}</p>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>

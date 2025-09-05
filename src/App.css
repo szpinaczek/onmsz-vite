@@ -115,52 +115,6 @@
   }
 }
 
-/* Light theme class - explicit definition for manual theme switching */
-/* .light {
-  --color-background: var(--color-brown-50);
-  --color-foreground: var(--color-brown-950);
-  --color-card: var(--color-brown-100);
-  --color-card-foreground: var(--color-brown-950);
-  --color-popover: var(--color-brown-50);
-  --color-popover-foreground: var(--color-brown-950);
-  --color-primary: var(--color-pink-500);
-  --color-primary-foreground: var(--color-brown-100);
-  --color-secondary: var(--color-brown-100);
-  --color-secondary-foreground: var(--color-brown-950);
-  --color-muted: var(--color-brown-200);
-  --color-muted-foreground: var(--color-brown-400);
-  --color-accent: var(--color-brown-200);
-  --color-accent-foreground: var(--color-brown-600);
-  --color-destructive: var(--color-pink-700);
-  --color-destructive-foreground: var(--color-brown-200);
-  --color-border: var(--color-brown-200);
-  --color-input: var(--color-brown-300);
-  --color-ring: var(--color-brown-100);
-} */
-
-/* Dark theme class - for manual theme switching */
-/* .dark {
-  --color-background: var(--color-brown-950);
-  --color-foreground: var(--color-brown-100);
-  --color-card: var(--color-brown-900);
-  --color-card-foreground: var(--color-brown-100);
-  --color-popover: var(--color-brown-950);
-  --color-popover-foreground: var(--color-brown-100);
-  --color-primary: var(--color-pink-500);
-  --color-primary-foreground: var(--color-brown-100);
-  --color-secondary: var(--color-brown-800);
-  --color-secondary-foreground: var(--color-brown-100);
-  --color-muted: var(--color-brown-800);
-  --color-muted-foreground: var(--color-brown-200);
-  --color-accent: var(--color-brown-800);
-  --color-accent-foreground: var(--color-brown-100);
-  --color-destructive: var(--color-pink-700);
-  --color-destructive-foreground: var(--color-brown-100);
-  --color-border: var(--color-brown-700);
-  --color-input: var(--color-brown-700);
-  --color-ring: var(--color-pink-400);
-} */
-
 /* Base styles */
 @layer base {
   * {
@@ -189,11 +143,6 @@
   max-width: 1536px;
   margin: 0 auto;
   text-align: center;
-}
-
-
-.read-the-docs {
-  color: #888;
 }
 
 .featured-link {
@@ -338,38 +287,15 @@
 }
 
 /* Route information styles */
-.route-info {
+/* .route-info {
   margin-top: 1.5rem;
   padding: 1rem;
   background-color: #f3f4f6;
   border-radius: 0.5rem;
-}
+} */
 
-.dark .route-info {
+/* .dark .route-info {
   background-color: #1f2937;
-}
-
-/* Table styles */
-.table-container {
-  overflow-x: auto;
-  margin-top: 1rem;
-}
-
-.table-container table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.table-container th,
-.table-container td {
-  padding: 0.75rem 1rem;
-  text-align: left;
-  border-bottom: 1px solid #e5e7eb;
-}
-
-.dark .table-container th,
-.dark .table-container td {
-  border-bottom-color: #374151;
 }
 
 /* Button styles */
