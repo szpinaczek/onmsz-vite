@@ -1,3 +1,5 @@
+import { Fullscreen } from "lucide-react";
+
 export type Language = "pl" | "en";
 
 const translations = {
@@ -73,6 +75,18 @@ const translations = {
     locationToday: "Dziś",
     locationTodayValue:
       "Studio Se-ma-for zakończyło działalnośc w 2018 roku.",
+    frameNext: "Następna klatka",
+    framePrevious: "Poprzednia klatka",
+    fastForward: "10 sek. do przodu",
+    fastBackward: "10 sek. do tyłu",
+    playButton: "Odtwarzaj",
+    pauseButton: "Pauza",
+    muteButton: "Wycisz",
+    unmuteButton: "Włącz dźwięk",
+    fullScreenButton: "Wyłącz pełny ekran",
+    smallScreenButton: "Pełny ekran",
+    volumeSliderLabel: "Głośność",
+    speedSliderLabel: "Szybkość",
   },
   en: {
     title: "Oh! I Can't Stop! - Interactive Map Following The Film's Footsteps",
@@ -145,6 +159,18 @@ const translations = {
     locationToday: "Today",
     locationTodayValue:
       "Studio Se-ma-for ceased operations in 2018.",
+    frameNext: "Next Frame",
+    framePrevious: "Previous Frame",
+    fastForward: "10 s. Forward",
+    fastBackward: "10 s. Backward",
+    playButton: "Play",
+    pauseButton: "Pause",
+    muteButton: "Mute",
+    unmuteButton: "Unmute",
+    fullScreenButton: "Full Screen",
+    smallScreenButton: "Exit Full Screen",
+    volumeSliderLabel: "Volume",
+    speedSliderLabel: "Speed",
   },
 } as const;
 

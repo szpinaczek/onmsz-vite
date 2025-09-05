@@ -1,4 +1,4 @@
-import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription } from "./ui/dialog";
+import { Dialog, DialogTrigger, DialogContent, DialogTitle } from "./ui/dialog";
 import { ScrollArea } from "./ui/scroll-area";
 import { Bookmark, MapPin, Calendar, Film, User, Camera, Clock, Award, CalendarX } from "lucide-react";
 import type { Language } from "./i18n/translations";
@@ -62,7 +62,7 @@ export function AboutSection({ language }: AboutSectionProps) {
               </div>
               
               {/* Key facts section */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+              {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
                 <Card className="bg-brown-50/70 dark:bg-brown-800/70 border border-brown-200 dark:border-brown-600 shadow-sm hover:shadow-md transition-all duration-200">
                   <CardContent className="p-4 flex items-center gap-3">
                     <MapPin className="h-8 w-8 text-brown-700 dark:text-brown-300" />
@@ -86,7 +86,7 @@ export function AboutSection({ language }: AboutSectionProps) {
                     </div>
                   </CardContent>
                 </Card>
-              </div>
+              </div> */}
               
               {/* External as */}
               <div className="flex flex-wrap gap-3 mt-4 justify-center md:justify-start">

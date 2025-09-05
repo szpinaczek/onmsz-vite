@@ -7,16 +7,16 @@ import { Home } from 'lucide-react';
 
 const mapStyles = `
   .leaflet-control-container .leaflet-control {
-    z-index: 1000 !important;
+    z-index: 999 !important;
   }
   .leaflet-control-zoom {
-    z-index: 1000 !important;
+    z-index: 999 !important;
   }
   .leaflet-control-attribution {
-    z-index: 1000 !important;
+    z-index: 999 !important;
   }
   .leaflet-control-home {
-    z-index: 1000 !important;
+    z-index: 999 !important;
     background: white;
     width: 30px;
     height: 30px;
@@ -101,7 +101,7 @@ const CurrentPositionIcon = L.icon({
 // Ikona dla punktów kluczowych (kropka)
 const KeyFrameIcon = L.divIcon({
   className: 'key-frame-marker',
-  html: '<div class="w-3 h-3 bg-primary rounded-full border-2 border-white dark:border-gray-200 shadow-md"></div>',
+  html: '<div class="w-3 h-3 bg-primary rounded-full border-2 border-white dark:border-pink-500 shadow-md"></div>',
   iconSize: [12, 12],
   iconAnchor: [6, 6]
 });

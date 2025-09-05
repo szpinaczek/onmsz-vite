@@ -142,16 +142,14 @@ function App({ children }: { children?: React.ReactNode }) {
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [keyFrames, setKeyFrames] = useState<FrameData[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
   const videoPlayerRef = useRef<VideoPlayerHandle>(null);
   const mapRef = useRef<MapComponentHandle>(null);
   const isMapUpdating = useRef<boolean>(false);
   const isVideoUpdating = useRef<boolean>(false);
   const scrollViewportRef = useRef<HTMLDivElement>(null);
   const rowRefs = useRef<(HTMLTableRowElement | null)[]>([]);
-  const tableRef = useRef<HTMLDivElement>(null);
+  // const tableRef = useRef<HTMLDivElement>(null);
   const [mapData, setMapData] = useState<MapData | null>(null);
-  // const { theme, setTheme } = useTheme();
   const videoSectionRef = useRef<HTMLDivElement>(null);
 
   // Load frames data
@@ -258,7 +256,7 @@ function App({ children }: { children?: React.ReactNode }) {
 
   return (
     <>
-      <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
           <div className="min-h-screen">
             <div className="container sm:px-0 mx-auto w-screen max-w-full md:max-w-[95%]">
               {/* Sticky header */}
@@ -270,7 +268,7 @@ function App({ children }: { children?: React.ReactNode }) {
             <AboutSection language={language} />
           </div>
 
-          <div className="flex flex-col lg:flex-row gap-6">
+          <div className="flex flex-col md:flex-row gap-6">
             {/* Video section */}
             <div className="video-section w-full lg:w-2/3 scroll-mt-24" ref={videoSectionRef}>
               <div className="max-w-[1280px] mx-auto">
@@ -285,7 +283,7 @@ function App({ children }: { children?: React.ReactNode }) {
             </div>
             
             {/* Map section */}
-            <div className="map-section w-full lg:flex-1">
+            <div className="map-section w-full md:flex-1">
               <div className="h-[300px] md:h-[400px] lg:h-full bg-brown-100 dark:bg-brown-800 rounded-lg overflow-hidden relative">
                 {mapData && (
                   <MapComponent

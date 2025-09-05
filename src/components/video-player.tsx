@@ -6,6 +6,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import { Volume2, VolumeX, SkipBack, SkipForward, Play, Pause, Maximize2, Minimize2, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import InfoTooltip from '@/components/info-tooltip';
+import { getTranslation } from "./i18n/translations";
 
 // Define types for the props
 interface VideoPlayerProps {
@@ -388,7 +389,7 @@ const VideoPlayer = forwardRef<VideoPlayerHandle, VideoPlayerProps>(({ onTimeUpd
               >
                 <Button
                   size="lg"
-                  className="bg-primary hover:bg-primary/90 text-primary-foreground"
+                  className="bg-pink-500 hover:bg-pink-500/90 text-brown-100"
                   onClick={(e) => {
                     e.stopPropagation();
                     togglePlayPause();
@@ -411,7 +412,7 @@ const VideoPlayer = forwardRef<VideoPlayerHandle, VideoPlayerProps>(({ onTimeUpd
               min={0}
               max={duration}
               step={0.01}
-            className="flex-grow slider-track bg-brown-300 dark:bg-brown-200"
+            className="flex-grow slider-track bg-brown-300 dark:bg-pink-500"
               onValueChange={handleSliderChange}
             />
           {/* Key frame markers - visible only on desktop */}
@@ -456,7 +457,7 @@ const VideoPlayer = forwardRef<VideoPlayerHandle, VideoPlayerProps>(({ onTimeUpd
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>{isPlaying ? 'Pauza' : 'Odtwarzaj'}</p>
+                  <p>{isPlaying ? getTranslation('pauseButton', language) : getTranslation('playButton', language)}</p>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
@@ -469,7 +470,7 @@ const VideoPlayer = forwardRef<VideoPlayerHandle, VideoPlayerProps>(({ onTimeUpd
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>10 sekund wstecz</p>
+                  <p>{getTranslation('fastBackward', language)}</p>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
@@ -482,7 +483,7 @@ const VideoPlayer = forwardRef<VideoPlayerHandle, VideoPlayerProps>(({ onTimeUpd
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>10 sekund do przodu</p>
+                  <p>{getTranslation('fastForward', language)}</p>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
@@ -495,7 +496,7 @@ const VideoPlayer = forwardRef<VideoPlayerHandle, VideoPlayerProps>(({ onTimeUpd
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>Poprzednia klatka</p>
+                  <p>{getTranslation('framePrevious', language)}</p>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
@@ -508,7 +509,7 @@ const VideoPlayer = forwardRef<VideoPlayerHandle, VideoPlayerProps>(({ onTimeUpd
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>Następna klatka</p>
+                  <p>{getTranslation('frameNext', language)}</p>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
@@ -524,7 +525,7 @@ const VideoPlayer = forwardRef<VideoPlayerHandle, VideoPlayerProps>(({ onTimeUpd
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>{isMuted ? 'Włącz dźwięk' : 'Wycisz'}</p>
+                  <p>{isMuted ? getTranslation('muteButton', language) : getTranslation('unmuteButton', language)}</p>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
@@ -537,7 +538,7 @@ const VideoPlayer = forwardRef<VideoPlayerHandle, VideoPlayerProps>(({ onTimeUpd
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>{isFullscreen ? 'Wyłącz pełny ekran' : 'Pełny ekran'}</p>
+                  <p>{isFullscreen ? getTranslation('smallScreenButton', language) : getTranslation('fullScreenButton', language)}</p>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>

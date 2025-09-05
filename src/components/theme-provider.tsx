@@ -32,22 +32,26 @@ export function ThemeProvider({
 
   useEffect(() => {
     const root = window.document.documentElement
+    
+    // Remove existing classes and data attributes
     root.classList.remove("light", "dark")
+    root.removeAttribute("data-theme")
 
+    let appliedTheme = theme
     if (theme === "system") {
-      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
-      root.classList.add(systemTheme)
-      return
+      appliedTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
     }
 
-    root.classList.add(theme)
+    // Apply both class and data attribute for maximum compatibility
+    root.classList.add(appliedTheme)
+    root.setAttribute("data-theme", appliedTheme)
   }, [theme])
 
   const value = {
     theme,
-    setTheme: (theme: Theme) => {
-      localStorage.setItem(storageKey, theme)
-      setTheme(theme)
+    setTheme: (newTheme: Theme) => {
+      localStorage.setItem(storageKey, newTheme)
+      setTheme(newTheme)
     },
   }
 

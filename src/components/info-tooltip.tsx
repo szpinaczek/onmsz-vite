@@ -169,9 +169,9 @@ const InfoTooltip: React.FC<InfoTooltipProps> = ({
         transition: isDragging ? 'none' : 'box-shadow 0.2s ease-in-out'
       }}
     >
-      <Card className={`border border-brown-200 dark:border-brown-600 bg-brown-50/50 dark:bg-brown-800/50 backdrop-blur-sm ${isDragging ? 'shadow-xl' : 'shadow-lg'}`}>
+      <Card className={`rounded-sm gap-0 border border-brown-200 dark:border-brown-600 bg-brown-100/70 dark:bg-brown-800/50 backdrop-blur-sm py-0 ${isDragging ? 'shadow-xl' : 'shadow-lg'}`}>
         <div 
-          className="p-1 cursor-grab active:cursor-grabbing flex justify-end items-center border-b border-brown-200 dark:border-brown-600 dark:bg-brown-800/40"
+          className="rounded-t-sm p-0 cursor-grab active:cursor-grabbing flex justify-end items-center border-b border-brown-200 dark:border-brown-600 bg-brown-200/70 dark:bg-brown-800/40"
           onMouseDown={handleMouseDown}
           onTouchStart={handleTouchStart}
           style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
@@ -184,16 +184,16 @@ const InfoTooltip: React.FC<InfoTooltipProps> = ({
           <Button
             variant="ghost"
             size="sm"
-            className="rounded-full hover:bg-brown-200 dark:hover:bg-brown-700 h-4 w-4"
+            className="rounded-full hover:bg-brown-400 dark:hover:bg-brown-700"
             onClick={() => onToggleVisibility(false)}
           >
-            <X className='h-4 w-4'/>
+            <X />
           </Button>
         </div>
-        <CardContent className="p-4 overflow-auto max-h-[300px] sm:max-h-[200px] md:max-h-[300px] flex flex-row gap-3 items-start">
-              <Info className="h-4 w-4 text-brown-500 dark:text-brown-300 mt-[2px]" />
+        <CardContent className="cursor-text pt-0 sm:p-6 rounded-t-none overflow-auto max-h-[300px] sm:max-h-[200px] md:max-h-[300px] flex flex-row gap-5 items-start">
+              <Info className="w-12 h-12 text-brown-500 dark:text-brown-300" size="lg"/>
           {info ? (
-            <div className="prose dark:prose-invert max-w-none">
+            <div>
               <p className="text-brown-900 dark:text-brown-100 leading-relaxed text-sm">
                 {info[language]}
               </p>
