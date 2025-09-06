@@ -4,6 +4,7 @@ import "@fontsource/open-sans"
 import '@fontsource/special-elite';
 import { ThemeProvider, useTheme } from "./components/theme-provider"
 import Header from './components/header';
+import HeroSection from './components/hero-section';
 import { useLanguage } from './components/i18n/language-context';
 import { AboutSection } from './components/about-section';
 import { getTranslation } from './components/i18n/translations';
@@ -43,8 +44,8 @@ function App({ children }: { children?: React.ReactNode }) {
 
   const { language, setLanguage } = useLanguage();
 
-  const handleLanguage = (data: Language) => {  
-    setLanguage(data)  
+  const handleLanguage = (data: Language) => {
+    setLanguage(data)
   };
 
   const handleFullscreenChange = (isFullscreen: boolean) => {
@@ -118,11 +119,11 @@ function App({ children }: { children?: React.ReactNode }) {
             if (index === 0) {
               return { ...frame, distance: 0, totalDistance: 0 };
             }
-            
+
             const prevFrame = data.frames[index - 1];
             const distance = L.latLng(prevFrame.lat, prevFrame.lng)
               .distanceTo(L.latLng(frame.lat, frame.lng));
-            
+
             // Oblicz całkowitą odległość od początku trasy
             const totalDistance = data.frames
               .slice(0, index + 1)
@@ -132,14 +133,14 @@ function App({ children }: { children?: React.ReactNode }) {
                 return sum + L.latLng(prev.lat, prev.lng)
                   .distanceTo(L.latLng(f.lat, f.lng));
               }, 0);
-            
+
             return {
               ...frame,
               distance: Math.round(distance),
               totalDistance: Math.round(totalDistance)
             };
           });
-          
+
           setKeyFrames(frames);
         }
         setIsLoading(false);
@@ -162,13 +163,13 @@ function App({ children }: { children?: React.ReactNode }) {
       try {
         const response = await fetch('/frames.json');
         const data = await response.json();
-        
+
         // Calculate distances between frames
         const framesWithDistances = data.frames.map((frame: any, index: number) => {
           if (index === 0) {
             return { ...frame, distance: 0, totalDistance: 0 };
           }
-          
+
           const prevFrame = data.frames[index - 1];
           const distance = calculateDistance(
             prevFrame.lat,
@@ -176,17 +177,17 @@ function App({ children }: { children?: React.ReactNode }) {
             frame.lat,
             frame.lng
           );
-          
+
           const totalDistance = data.frames
             .slice(0, index)
             .reduce((sum: number, f: any) => sum + (f.distance || 0), 0);
-            
+
           return { ...frame, distance, totalDistance };
         });
-        
+
         // Prepare route data
         const route = framesWithDistances.map((frame: any) => [frame.lat, frame.lng]);
-        
+
         setMapData({
           frames: framesWithDistances,
           route
@@ -202,57 +203,58 @@ function App({ children }: { children?: React.ReactNode }) {
   return (
     <>
       <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
-          <div className="min-h-screen">
-            <div className="container sm:px-0 mx-auto w-screen max-w-full md:max-w-[95%]">
-              {/* Sticky header */}
-                  <Header language={language} handleLanguage={handleLanguage}/>
-              <div>
-                <div className="py-8">
+        <div className="min-h-screen">
 
-          <div className="mb-8">
-            <AboutSection language={language} />
-          </div>
+          <div className="container sm:px-0 mx-auto w-screen max-w-full md:max-w-[95%]">
+            <Header language={language} handleLanguage={handleLanguage} />
+            <HeroSection />
+            <div>
+              <div className="py-8">
 
-          <div className="flex flex-col md:flex-row gap-6">
-            {/* Video section */}
-            <div className="video-section w-full lg:w-2/3 scroll-mt-24" ref={videoSectionRef}>
-              <div className="max-w-[1280px] mx-auto">
-                <VideoPlayer 
-                  ref={videoPlayerRef} 
-                  onTimeUpdate={handleTimeUpdate} 
-                  onFrameChange={handleTimeUpdate}
-                  onFullscreenChange={handleFullscreenChange}
+                <div className="mb-8">
+                  <AboutSection language={language} />
+                </div>
+
+                <div className="flex flex-col md:flex-row gap-6">
+                  {/* Video section */}
+                  <div className="video-section w-full lg:w-2/3 scroll-mt-24" ref={videoSectionRef}>
+                    <div className="max-w-[1280px] mx-auto">
+                      <VideoPlayer
+                        ref={videoPlayerRef}
+                        onTimeUpdate={handleTimeUpdate}
+                        onFrameChange={handleTimeUpdate}
+                        onFullscreenChange={handleFullscreenChange}
+                        language={language}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Map section */}
+                  <div className="map-section w-full md:flex-1">
+                    <div className="h-[300px] md:h-[400px] lg:h-full bg-brown-100 dark:bg-brown-800 rounded-lg overflow-hidden relative">
+                      {mapData && (
+                        <MapComponent
+                          currentTime={currentTime}
+                          onTimeUpdate={handleMapTimeUpdate}
+                          language={language}
+                        />
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                <RouteTable
+                  keyFrames={keyFrames}
                   language={language}
+                  currentTime={currentTime}
+                  videoPlayerRef={videoPlayerRef}
+                  videoSectionRef={videoSectionRef}
                 />
-              </div>
-            </div>
-            
-            {/* Map section */}
-            <div className="map-section w-full md:flex-1">
-              <div className="h-[300px] md:h-[400px] lg:h-full bg-brown-100 dark:bg-brown-800 rounded-lg overflow-hidden relative">
-                {mapData && (
-                  <MapComponent
-                    currentTime={currentTime}
-                    onTimeUpdate={handleMapTimeUpdate}
-                    language={language}
-                  />
-                )}
-              </div>
-            </div>
-          </div>
-
-          <RouteTable
-            keyFrames={keyFrames}
-            language={language}
-            currentTime={currentTime}
-            videoPlayerRef={videoPlayerRef}
-            videoSectionRef={videoSectionRef}
-          />
 
               </div>
             </div>
           </div>
-          </div>
+        </div>
       </ThemeProvider>
 
     </>

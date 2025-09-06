@@ -78,7 +78,7 @@ export function MiniTimeDistanceChart({ frames, currentIndex, className = "", la
   return (
     <div className={`h-8 w-24 ${className}`}>
       <LineChart
-        width={96}
+        width={130}
         height={32}
         data={chartData}
         margin={{ top: 2, right: 2, left: 2, bottom: 2 }}
@@ -110,7 +110,7 @@ export function MiniTimeDistanceChart({ frames, currentIndex, className = "", la
           <ReferenceDot
             x={currentFrame.distance}
             y={currentFrame.time}
-            r={2}
+            r={4}
             fill="#ef4444"
             stroke="#fff"
             strokeWidth={1}

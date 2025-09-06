@@ -10,7 +10,7 @@ const translations = {
     location: "Lokalizacja",
     coordinates: "Współrzędne",
     distance: "Odległość",
-    progress: "Postęp",
+    progress: "Czas/Odległość",
     actions: "Akcje",
     jumpTo: "Przejdź",
     noInfo: "Brak informacji",
@@ -86,6 +86,8 @@ const translations = {
     smallScreenButton: "Pełny ekran",
     volumeSliderLabel: "Głośność",
     speedSliderLabel: "Szybkość",
+    heroTitle: "Oj! Nie mogę się zatrzymać!",
+    heroSubtitle: "Interaktywna podróż śladami eksperymentalnego filmu z 1975 roku"
   },
   en: {
     title: "Oh! I Can't Stop! - Interactive Map Following The Film's Footsteps",
@@ -96,7 +98,7 @@ const translations = {
     location: "Location",
     coordinates: "Coordinates",
     distance: "Distance",
-    progress: "Progress",
+    progress: "Time/Distance",
     actions: "Actions",
     jumpTo: "Jump to",
     noInfo: "No information",
@@ -171,6 +173,8 @@ const translations = {
     smallScreenButton: "Exit Full Screen",
     volumeSliderLabel: "Volume",
     speedSliderLabel: "Speed",
+    heroTitle: "Oh! I Can't Stop!",
+    heroSubtitle: "Interactive journey following the experimental 1975 film"
   },
 } as const;
 
