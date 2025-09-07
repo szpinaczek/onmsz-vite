@@ -22,7 +22,7 @@ const translations = {
     exitFullscreen: "Wyjdź z pełnego ekranu",
     currentPosition: "Aktualna pozycja",
     learnMore: "Dowiedz się więcej",
-    about: "O projekcie",
+    about: "O stronie",
     aboutAuthors: "Współautorzy filmu",
     authors: "Współautorzy",
     authorDirector: "Scenariusz, zdjęcia i reżyseria",
@@ -87,7 +87,8 @@ const translations = {
     volumeSliderLabel: "Głośność",
     speedSliderLabel: "Szybkość",
     heroTitle: "Oj! Nie mogę się zatrzymać!",
-    heroSubtitle: "Interaktywna podróż śladami eksperymentalnego filmu z 1975 roku"
+    heroSubtitle: "Interaktywna podróż śladami",
+    heroSubtitle2: "eksperymentalnego filmu z 1975 roku"
   },
   en: {
     title: "Oh! I Can't Stop! - Interactive Map Following The Film's Footsteps",
@@ -110,7 +111,7 @@ const translations = {
     exitFullscreen: "Exit fullscreen",
     currentPosition: "Current position",
     learnMore: "Learn more",
-    about: "About The Project",
+    about: "About This Site",
     aboutAuthors: "Credits",
     authors: "Credits",
     authorDirector: "Screenplay, cinematography and direction",
@@ -174,7 +175,8 @@ const translations = {
     volumeSliderLabel: "Volume",
     speedSliderLabel: "Speed",
     heroTitle: "Oh! I Can't Stop!",
-    heroSubtitle: "Interactive journey following the experimental 1975 film"
+    heroSubtitle: "Interactive journey",
+    heroSubtitle2: "following the experimental 1975 film"
   },
 } as const;
 
