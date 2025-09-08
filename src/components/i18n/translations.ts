@@ -2,7 +2,7 @@ export type Language = "pl" | "en";
 
 const translations = {
   pl: {
-    title: "Oj! Nie mogę się zatrzymać - interaktywna mapa śladami filmu",
+    title: "Oj! Nie mogę się zatrzymać - interaktywna podroż śladami filmu",
     map: "Mapa",
     time: "Czas",
     video: "Wideo",
@@ -88,10 +88,13 @@ const translations = {
     speedSliderLabel: "Szybkość",
     heroTitle: "Oj! Nie mogę się zatrzymać!",
     heroSubtitle: "Interaktywna podróż śladami",
-    heroSubtitle2: "eksperymentalnego filmu z 1975 roku"
+    heroSubtitle2: "eksperymentalnego filmu z 1975 roku",
+    "menu.about": "o stronie",
+    "menu.film": "film",
+    "menu.routeTable": "szczegóły trasy"
   },
   en: {
-    title: "Oh! I Can't Stop! - Interactive Map Following The Film's Footsteps",
+    title: "Oh! I Can't Stop! - Interactive Journey Following The Film's Footsteps",
     map: "Map",
     time: "Time",
     video: "Video",
@@ -175,8 +178,11 @@ const translations = {
     volumeSliderLabel: "Volume",
     speedSliderLabel: "Speed",
     heroTitle: "Oh! I Can't Stop!",
-    heroSubtitle: "Interactive journey",
-    heroSubtitle2: "following the experimental 1975 film"
+    heroSubtitle: "Interactive journey following",
+    heroSubtitle2: "the experimental 1975 film",
+    "menu.about": "about",
+    "menu.film": "film",
+    "menu.routeTable": "route table"
   },
 } as const;
 

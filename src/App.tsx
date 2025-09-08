@@ -211,13 +211,13 @@ function App({ children }: { children?: React.ReactNode }) {
             <div>
               <div className="py-8">
 
-                <div className="mb-8">
+                <div className="mb-8" id="about">
                   <AboutSection language={language} />
                 </div>
 
                 <div className="flex flex-col md:flex-row gap-6">
                   {/* Video section */}
-                  <div className="video-section w-full lg:w-2/3 scroll-mt-24" ref={videoSectionRef}>
+                  <div className="video-section w-full lg:w-2/3 scroll-mt-24" id="video" ref={videoSectionRef}>
                     <div className="max-w-[1280px] mx-auto">
                       <VideoPlayer
                         ref={videoPlayerRef}
@@ -243,6 +243,7 @@ function App({ children }: { children?: React.ReactNode }) {
                   </div>
                 </div>
 
+                <div id="route-table">
                 <RouteTable
                   keyFrames={keyFrames}
                   language={language}
@@ -250,6 +251,7 @@ function App({ children }: { children?: React.ReactNode }) {
                   videoPlayerRef={videoPlayerRef}
                   videoSectionRef={videoSectionRef}
                 />
+              </div>
 
               </div>
             </div>
