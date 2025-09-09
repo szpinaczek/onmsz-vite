@@ -25,6 +25,7 @@
     "clsx": "^2.1.1",
     "framer-motion": "^12.23.12",
     "gsap": "^3.13.0",
+    "hamburger-react": "^2.5.2",
     "leaflet": "^1.9.4",
     "lucide-react": "^0.542.0",
     "react": "^19.1.1",

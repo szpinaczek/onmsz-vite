@@ -154,6 +154,10 @@
   background-color: transparent;
 } */
 
+.mobileMenuItem {
+  display: block;
+  padding: 0.5rem;
+}
 .featured-link {
   font-weight: 600;
   color: hsl(var(--color-brown-500));

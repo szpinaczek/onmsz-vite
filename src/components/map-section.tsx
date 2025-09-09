@@ -6,17 +6,23 @@ import { Button } from '@/components/ui/button';
 import { Home } from 'lucide-react';
 
 const mapStyles = `
-  .leaflet-control-container .leaflet-control {
+.leaflet-top, .leaflet-bottom 
+{
+    position: absolute;
     z-index: 999 !important;
+    pointer-events: none;
+}
+  .leaflet-control-container .leaflet-control {
+    z-index: 10 !important;
   }
   .leaflet-control-zoom {
-    z-index: 999 !important;
+    z-index: 10 !important;
   }
   .leaflet-control-attribution {
-    z-index: 999 !important;
+    z-index: 10 !important;
   }
   .leaflet-control-home {
-    z-index: 999 !important;
+    z-index: 10 !important;
     background: white;
     width: 30px;
     height: 30px;
@@ -256,7 +262,7 @@ const MapComponent = forwardRef<MapComponentHandle, MapComponentProps>(({ curren
       .then(response => response.json())
       .then(data => setMapData(data))
       .catch(error => console.error("Error loading map data:", error));
-      
+
     // Clean up when component unmounts
     return () => {
       document.body.classList.remove('satellite-active');
@@ -342,11 +348,11 @@ const MapComponent = forwardRef<MapComponentHandle, MapComponentProps>(({ curren
         // Check if the satellite layer is active
         const isSatellite = e.name === "Satellite map";
         setIsSatelliteActive(isSatellite);
-        
+
         // Add or remove a class from the document body
         if (isSatellite) {
           document.body.classList.add('satellite-active');
-          
+
           // Find all leaflet-layer elements and remove the filter directly
           setTimeout(() => {
             const layers = document.querySelectorAll('.leaflet-layer');
@@ -355,7 +361,7 @@ const MapComponent = forwardRef<MapComponentHandle, MapComponentProps>(({ curren
                 layer.style.filter = 'none';
               }
             });
-            
+
             // Make sure zoom controls still have the filter
             const zoomControls = document.querySelectorAll('.leaflet-control-zoom-in, .leaflet-control-zoom-out');
             zoomControls.forEach(control => {
@@ -366,7 +372,7 @@ const MapComponent = forwardRef<MapComponentHandle, MapComponentProps>(({ curren
           }, 100);
         } else {
           document.body.classList.remove('satellite-active');
-          
+
           // Reset the filter (let CSS handle it)
           setTimeout(() => {
             const layers = document.querySelectorAll('.leaflet-layer');
@@ -393,7 +399,7 @@ const MapComponent = forwardRef<MapComponentHandle, MapComponentProps>(({ curren
               layer.style.filter = 'none';
             }
           });
-          
+
           // Make sure zoom controls still have the filter
           const zoomControls = document.querySelectorAll('.leaflet-control-zoom-in, .leaflet-control-zoom-out');
           zoomControls.forEach(control => {
@@ -408,7 +414,7 @@ const MapComponent = forwardRef<MapComponentHandle, MapComponentProps>(({ curren
         map.off('dragstart', handleUserInteraction);
         map.off('zoomstart', handleUserInteraction);
         map.off('baselayerchange', handleBaseLayerChange);
-        
+
         // Clean up the body class when component unmounts
         document.body.classList.remove('satellite-active');
       };
@@ -576,7 +582,7 @@ const MapComponent = forwardRef<MapComponentHandle, MapComponentProps>(({ curren
       </MapContainer>
 
       {/* Map controls */}
-      <div className="absolute top-4 right-4 flex flex-col gap-2 z-[999]">
+      <div className="absolute top-4 right-4 flex flex-col gap-2 z-10">
         <Button
           variant="outline"
           size="sm"

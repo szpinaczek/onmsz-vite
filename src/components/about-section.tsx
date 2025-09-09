@@ -8,6 +8,7 @@ import { DialogHeader } from "./ui/dialog";
 import { Table, TableBody, TableRow, TableCell } from "./ui/table";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
+import GlowingCard from "./glowing-card";
 
 // import { useTheme } from "next-themes";
 
@@ -21,7 +22,7 @@ export function AboutSection({ language }: AboutSectionProps) {
 
   return (
     <div className="w-full flex flex-col lg:flex-row justify-between gap-6 p-0 m-0 border-0">
-      <Card className="w-full order-1 bg-gradient-to-br from-brown-50 to-brown-100 dark:from-brown-700 dark:to-brown-800 border-0 shadow-lg hover:shadow-xl transition-all duration-300">
+      <GlowingCard>
         <CardHeader className="border-b border-brown-200 dark:border-brown-600">
           <CardTitle className="text-2xl font-bold tracking-tight text-brown-900 dark:text-brown-100 flex items-center gap-2">
             <Bookmark className="size-6 text-brown-700 dark:text-brown-300" />
@@ -94,7 +95,7 @@ export function AboutSection({ language }: AboutSectionProps) {
             </div>
           </ScrollArea>
         </CardContent>
-      </Card>
+      </GlowingCard>
 
       <Card className="w-full md:w-2/3 order-1 bg-gradient-to-br from-brown-50 to-brown-100 dark:from-brown-700 dark:to-brown-800 border-0 shadow-lg hover:shadow-xl transition-all duration-300">
         <CardHeader className="border-b border-brown-200 dark:border-brown-600">
