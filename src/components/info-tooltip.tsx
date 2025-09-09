@@ -191,7 +191,7 @@ const InfoTooltip: React.FC<InfoTooltipProps> = ({
           </Button>
         </div>
         <CardContent className="cursor-text pt-0 sm:p-6 rounded-t-none overflow-auto max-h-[300px] sm:max-h-[200px] md:max-h-[300px] flex flex-row gap-5 items-start">
-              <Info className="w-12 h-12 text-brown-500 dark:text-brown-300" size="lg"/>
+              <Info className="w-12 h-12 text-brown-500 dark:text-brown-300"/>
           {info ? (
             <div>
               <p className="text-brown-900 dark:text-brown-100 leading-relaxed text-sm">

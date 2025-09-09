@@ -22,7 +22,7 @@ const mapStyles = `
     z-index: 10 !important;
   }
   .leaflet-control-home {
-    z-index: 10 !important;
+    z-index: 1000 !important;
     background: white;
     width: 30px;
     height: 30px;

@@ -65,9 +65,9 @@ const HeroSection: React.FC = () => {
 
                 {/* Title Image */}
                 {language === 'pl' ?
-                    <div className='absolute top-4 left-1/2 transform -translate-x-1/2 md:-translate-0 md:top-2 lg:top-4 md:left-10 w-[65vw] md:w-[25vw] h-auto object-cover z-50 drop-shadow-[0_0_2px_rgba(255,255,255,1)]'>
+                    <div className='absolute top-4 left-1/2 transform -translate-x-1/2 md:-translate-0 md:top-2 lg:top-4 md:left-10 w-[65vw] md:w-[25vw] h-auto object-cover z-50 drop-shadow-[0_0_2px_rgba(255,255,255,1)] dark:drop-shadow-none'>
                         <img src="/images/title_pl.png" alt="" /></div> :
-                    <div className='absolute top-4 md:top-2 lg:top-3 left-10 w-[80vw] md:w-[35vw] h-auto object-cover z-50 drop-shadow-[0_0_2px_rgba(255,255,255,1)]'>
+                    <div className='absolute top-4 md:top-2 lg:top-3 left-10 w-[80vw] md:w-[35vw] h-auto object-cover z-50 drop-shadow-[0_0_2px_rgba(255,255,255,1)] dark:drop-shadow-none'>
                         <img src="/images/title_en.png" alt="" /></div>
                 }
 
