@@ -140,7 +140,7 @@ const GlowingEffect = memo(
               "--gradient":
                 variant === "white"
                   ? `linear-gradient(135deg, #dcd3cc, #b8a698)`
-                  : `linear-gradient(135deg, #120f0c, #615043)`,
+                  : `linear-gradient(135deg, #b8a698, #947a66)`,
             } as React.CSSProperties
           }
           className={cn(

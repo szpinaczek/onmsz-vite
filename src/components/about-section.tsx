@@ -30,21 +30,10 @@ export function AboutSection({ language }: AboutSectionProps) {
                 {getTranslation('about', language)}
             </h3>
           </CardTitle>
-          {/* <CardDescription className="text-brown-700 dark:text-brown-300 italic">
-            {language === "pl" ? 'Odkryj historię niezwykłego projektu filmowego' : 'Discover the history of an extraordinary film project'}
-          </CardDescription> */}
         </CardHeader>
         <CardContent className="pt-6">
           <ScrollArea className="h-[400px] pr-4">
             <div className="space-y-6">
-              {/* Intro section with highlight */}
-              {/* <div className="bg-brown-100/50 dark:bg-brown-600/50 p-4 rounded-lg border-l-4 border-brown-400 dark:border-brown-300">
-                <p className="text-md text-brown-900 dark:text-brown-100 font-medium">
-                  {language === "pl" 
-                    ? 'Projekt "Oj! Nie mogę się zatrzymać" to interaktywna podróż śladami kultowego filmu animowanego z 1975 roku.' 
-                    : 'The "Oh! I Can\'t Stop!" project is an interactive journey following the footsteps of the iconic animated film from 1975.'}
-                </p>
-              </div> */}
               
               {/* Main content with formatting */}
               <div className="space-y-4">
@@ -62,7 +51,7 @@ export function AboutSection({ language }: AboutSectionProps) {
                 </p>
               </div>
               
-              <div className="flex flex-wrap gap-3 mt-4 justify-center md:justify-start">
+              <div className="flex flex-wrap gap-5 mt-4 justify-center md:justify-start">
                 <Button variant="outline" className="text-brown-700 dark:text-brown-100 border-brown-300 dark:border-brown-600 hover:bg-brown-100 dark:hover:bg-brown-700" 
                   onClick={() => window.open('https://www.filmpolski.pl/fp/index.php?film=422453', '_blank')}>
                   <Film className="mr-2 h-4 w-4" />
@@ -97,7 +86,7 @@ export function AboutSection({ language }: AboutSectionProps) {
         </CardContent>
       </GlowingCard>
 
-      <Card className="w-full md:w-2/3 order-1 bg-gradient-to-br from-brown-50 to-brown-100 dark:from-brown-700 dark:to-brown-800 border-0 shadow-lg hover:shadow-xl transition-all duration-300">
+      <GlowingCard>
         <CardHeader className="border-b border-brown-200 dark:border-brown-600">
           <CardTitle className="text-2xl font-bold tracking-tight text-brown-900 dark:text-brown-100 flex items-center gap-2">
             <Film className="h-6 w-6" />
@@ -141,57 +130,63 @@ export function AboutSection({ language }: AboutSectionProps) {
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <Card className="bg-brown-50/70 dark:bg-brown-800/70 border border-brown-200 dark:border-brown-600 shadow-sm hover:shadow-md transition-all duration-200">
-                    <CardContent className="px-4 flex items-center gap-3">
-                      <Calendar className="h-8 w-8 text-brown-700 dark:text-brown-300" />
+                  <Card className="flex items-center bg-brown-50/70 dark:bg-brown-800/70 border border-brown-200 dark:border-brown-600 shadow-sm hover:shadow-md transition-all duration-200 p-2">
+                    <CardContent className="flex items-center h-full gap-5">
+                      <Calendar className="h-9 w-9 text-brown-700 dark:text-brown-300" />
                       <div>
                         <p className="text-sm font-medium text-brown-500 dark:text-brown-400">
                           {getTranslation('filmYear', language)}
                         </p>
-                        <p className="text-lg font-bold text-brown-900 dark:text-brown-100">1975</p>
+                        <p className="text-xl font-bold text-brown-900 dark:text-brown-100">1975</p>
                       </div>
                     </CardContent>
                   </Card>
                   
-                  <Card className="bg-brown-50/70 dark:bg-brown-800/70 border border-brown-200 dark:border-brown-600 shadow-sm hover:shadow-md transition-all duration-200">
-                    <CardContent className="px-4 flex items-center gap-3">
-                      <Clock className="h-8 w-8 text-brown-700 dark:text-brown-300" />
+                  <Card className="flex items-center bg-brown-50/70 dark:bg-brown-800/70 border border-brown-200 dark:border-brown-600 shadow-sm hover:shadow-md transition-all duration-200 p-2">
+                    <CardContent className="flex items-center h-full gap-5">
+                      <Clock className="h-9 w-9 text-brown-700 dark:text-brown-300" />
                       <div>
                         <p className="text-sm font-medium text-brown-500 dark:text-brown-400">
                           {getTranslation('filmDuration', language)}
                         </p>
-                        <p className="text-lg font-bold text-brown-900 dark:text-brown-100">10:30</p>
+                        <p className="text-xl font-bold text-brown-900 dark:text-brown-100">10:30</p>
                       </div>
                     </CardContent>
                   </Card>
                   
-                  <Card className="bg-brown-50/70 dark:bg-brown-800/70 border border-brown-200 dark:border-brown-600 shadow-sm hover:shadow-md transition-all duration-200">
-                    <CardContent className="p-4">
-                      <div className="flex items-center gap-3 mb-2">
-                        <Film className="h-6 w-6 text-brown-700 dark:text-brown-300" />
+                  <Card className=" bg-brown-50/70 dark:bg-brown-800/70 border border-brown-200 dark:border-brown-600 shadow-sm hover:shadow-md transition-all duration-200 px-8 py-2">
+                    <CardContent className="grid grid-cols-[auto_1fr] items-center h-full gap-5 px-0">
+                      <div className="text-center flex flex-col items-center">
+                        <Film className="h-9 w-9 text-brown-700 dark:text-brown-300" />
                         <p className="text-sm font-medium text-brown-500 dark:text-brown-400">
                           {getTranslation('filmTechnique', language)}
                         </p>
                       </div>
-                      <p className="text-brown-900 dark:text-brown-100 pl-9">
-                        {getTranslation('filmTechniqueValue', language)}
-                      </p>
+                      <div className="flex items-center justify-center">
+                        <p className="text-brown-900 dark:text-brown-100 block text-md">
+                          {getTranslation('filmTechniqueValue', language)}
+                        </p>
+                      </div>
                     </CardContent>
                   </Card>
-                  
-                  <Card className="bg-brown-50/70 dark:bg-brown-800/70 border border-brown-200 dark:border-brown-600 shadow-sm hover:shadow-md transition-all duration-200">
-                    <CardContent className="p-4">
-                      <div className="flex items-center gap-3 mb-2">
-                        <Award className="h-6 w-6 text-brown-700 dark:text-brown-300" />
+
+                  <Card className=" bg-brown-50/70 dark:bg-brown-800/70 border border-brown-200 dark:border-brown-600 shadow-sm hover:shadow-md transition-all duration-200 px-8 py-2">
+                    <CardContent className="grid grid-cols-[auto_1fr] items-center h-full gap-5 px-0">
+                      <div className="text-center flex flex-col items-center">
+                        <Film className="h-9 w-9 text-brown-700 dark:text-brown-300" />
                         <p className="text-sm font-medium text-brown-500 dark:text-brown-400">
                           {getTranslation('filmAwards', language)}
                         </p>
                       </div>
-                      <p className="text-brown-900 dark:text-brown-100 pl-9">
-                        {getTranslation('filmAwardsValue', language)}
-                      </p>
+                      <div className="flex items-center justify-center">
+                        <p className="text-brown-900 dark:text-brown-100 block text-md w-auto">
+                          {getTranslation('filmAwardsValue', language)}
+                        </p>
+                      </div>
                     </CardContent>
                   </Card>
+                  
+                  
                 </div>
                 
                 <div className="mt-6 flex justify-end">
@@ -203,7 +198,7 @@ export function AboutSection({ language }: AboutSectionProps) {
                       </Button>
                     </DialogTrigger>
                     <DialogContent
-                      className="sm:max-w-[425px] md:max-w-[600px] bg-brown-50 dark:bg-brown-800 text-brown-900 dark:text-brown-100"
+                      className="sm:max-w-[425px] md:max-w-[600px] bg-brown-50 dark:bg-brown-800 text-brown-900 dark:text-brown-100 z-1001"
                       onOpenAutoFocus={(e) => e.preventDefault()}
                       >
                       <DialogHeader>
@@ -383,8 +378,8 @@ export function AboutSection({ language }: AboutSectionProps) {
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <Card className="bg-brown-50/70 dark:bg-brown-800/70 border border-brown-200 dark:border-brown-600 shadow-sm hover:shadow-md transition-all duration-200">
-                    <CardContent className="p-4 flex items-center gap-3">
-                      <Calendar className="h-8 w-8 text-brown-700 dark:text-brown-300" />
+                    <CardContent className="p-4 flex items-center gap-5">
+                      <Calendar className="h-9 w-9 text-brown-700 dark:text-brown-300" />
                       <div>
                         <p className="text-sm font-medium text-brown-500 dark:text-brown-400">
                           {getTranslation('directorBorn', language)}
@@ -396,7 +391,7 @@ export function AboutSection({ language }: AboutSectionProps) {
                   
                   <Card className="bg-brown-50/70 dark:bg-brown-800/70 border border-brown-200 dark:border-brown-600 shadow-sm hover:shadow-md transition-all duration-200">
                     <CardContent className="p-4">
-                      <div className="flex items-center gap-3 mb-2">
+                      <div className="flex items-center gap-5 mb-2">
                         <User className="h-6 w-6 text-brown-700 dark:text-brown-300" />
                         <p className="text-sm font-medium text-brown-500 dark:text-brown-400">
                           {getTranslation('directorEducation', language)}
@@ -410,7 +405,7 @@ export function AboutSection({ language }: AboutSectionProps) {
                   
                   <Card className="bg-brown-50/70 dark:bg-brown-800/70 border border-brown-200 dark:border-brown-600 shadow-sm hover:shadow-md transition-all duration-200">
                     <CardContent className="p-4">
-                      <div className="flex items-center gap-3 mb-2">
+                      <div className="flex items-center gap-5 mb-2">
                         <Award className="h-6 w-6 text-brown-700 dark:text-brown-300" />
                         <p className="text-sm font-medium text-brown-500 dark:text-brown-400">
                           {getTranslation('directorAchievements', language)}
@@ -424,7 +419,7 @@ export function AboutSection({ language }: AboutSectionProps) {
                   
                   <Card className="bg-brown-50/70 dark:bg-brown-800/70 border border-brown-200 dark:border-brown-600 shadow-sm hover:shadow-md transition-all duration-200">
                     <CardContent className="p-4">
-                      <div className="flex items-center gap-3 mb-2">
+                      <div className="flex items-center gap-5 mb-2">
                         <Bookmark className="h-6 w-6 text-brown-700 dark:text-brown-300" />
                         <p className="text-sm font-medium text-brown-500 dark:text-brown-400">
                           {getTranslation('directorLegacy', language)}
@@ -450,7 +445,7 @@ export function AboutSection({ language }: AboutSectionProps) {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <Card className="bg-brown-50/70 dark:bg-brown-800/70 border border-brown-200 dark:border-brown-600 shadow-sm hover:shadow-md transition-all duration-200">
                     <CardContent className="p-4">
-                      <div className="flex items-center gap-3 mb-2">
+                      <div className="flex items-center gap-5 mb-2">
                         <MapPin className="h-6 w-6 text-brown-700 dark:text-brown-300" />
                         <p className="text-sm font-medium text-brown-500 dark:text-brown-400">
                           {getTranslation('locationCity', language)}
@@ -464,7 +459,7 @@ export function AboutSection({ language }: AboutSectionProps) {
                   
                   <Card className="bg-brown-50/70 dark:bg-brown-800/70 border border-brown-200 dark:border-brown-600 shadow-sm hover:shadow-md transition-all duration-200">
                     <CardContent className="p-4">
-                      <div className="flex items-center gap-3 mb-2">
+                      <div className="flex items-center gap-5 mb-2">
                         <Film className="h-6 w-6 text-brown-700 dark:text-brown-300" />
                         <p className="text-sm font-medium text-brown-500 dark:text-brown-400">
                           {getTranslation('locationStudio', language)}
@@ -478,7 +473,7 @@ export function AboutSection({ language }: AboutSectionProps) {
                   
                   <Card className="bg-brown-50/70 dark:bg-brown-800/70 border border-brown-200 dark:border-brown-600 shadow-sm hover:shadow-md transition-all duration-200">
                     <CardContent className="p-4">
-                      <div className="flex items-center gap-3 mb-2">
+                      <div className="flex items-center gap-5 mb-2">
                         <Bookmark className="h-6 w-6 text-brown-700 dark:text-brown-300" />
                         <p className="text-sm font-medium text-brown-500 dark:text-brown-400">
                           {getTranslation('locationSignificance', language)}
@@ -492,7 +487,7 @@ export function AboutSection({ language }: AboutSectionProps) {
                   
                   <Card className="bg-brown-50/70 dark:bg-brown-800/70 border border-brown-200 dark:border-brown-600 shadow-sm hover:shadow-md transition-all duration-200">
                     <CardContent className="p-4">
-                      <div className="flex items-center gap-3 mb-2">
+                      <div className="flex items-center gap-5 mb-2">
                         <CalendarX className="h-6 w-6 text-brown-700 dark:text-brown-300" />
                         <p className="text-sm font-medium text-brown-500 dark:text-brown-400">
                           {getTranslation('locationToday', language)}
@@ -508,7 +503,7 @@ export function AboutSection({ language }: AboutSectionProps) {
             </TabsContent>
           </Tabs>
         </CardContent>
-      </Card>
+      </GlowingCard>
     </div>
   );
 } 

@@ -18,7 +18,7 @@ const GlowingCard = ({ children }: GlowingCardProps) => {
           variant={"default"}
         />
 
-      <Card className="border-0 rounded-xl bg-gradient-to-b from-brown-100/50 to-brown-200/40 dark:from-brown-600 dark:to-brown-800">
+      <Card className="border-0 rounded-xl bg-gradient-to-b from-brown-100/60 to-brown-200/40 dark:from-brown-500 dark:to-brown-800">
         { children }
       </Card>
     </div>
