@@ -3,7 +3,7 @@ import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "./ui/table";
 import { MiniDistanceChart } from "./mini-distance-chart";
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import type { Language } from '@/types/map';
 
 // Types
@@ -48,6 +48,7 @@ export function RouteTable({
   // Refs
   const scrollViewportRef = useRef<HTMLDivElement>(null);
   const rowRefs = useRef<(HTMLTableRowElement | null)[]>([]);
+  const lastScrolledIndexRef = useRef<number>(-1);
 
   // Functions
   const formatTime = (timeInSeconds: number) => {
@@ -69,7 +70,7 @@ export function RouteTable({
   };
 
   // Function to scroll to a specific row
-  const scrollToRow = (index: number) => {
+  const scrollToRow = (index: number, behavior: 'smooth' | 'instant' = 'smooth') => {
     if (!scrollViewportRef.current || !rowRefs.current[index]) return;
 
     const viewport = scrollViewportRef.current;
@@ -78,7 +79,7 @@ export function RouteTable({
     // Scroll the row to the top of the viewport
     viewport.scrollTo({
       top: row.offsetTop,
-      behavior: 'smooth'
+      behavior
     });
   };
 
@@ -91,6 +92,27 @@ export function RouteTable({
       });
     }
   };
+
+  // Auto-scroll to current row when time changes
+  useEffect(() => {
+    if (keyFrames.length === 0) return;
+
+    // Find the current frame index based on currentTime
+    let currentFrameIndex = -1;
+    for (let i = 0; i < keyFrames.length; i++) {
+      if (currentTime >= keyFrames[i].time &&
+          (i === keyFrames.length - 1 || currentTime < keyFrames[i + 1].time)) {
+        currentFrameIndex = i;
+        break;
+      }
+    }
+
+    // Only scroll if we found a valid frame and it's different from the last scrolled one
+    if (currentFrameIndex !== -1 && currentFrameIndex !== lastScrolledIndexRef.current) {
+      lastScrolledIndexRef.current = currentFrameIndex;
+      scrollToRow(currentFrameIndex, 'smooth');
+    }
+  }, [currentTime, keyFrames]);
   
     return (
         <div className="mt-6 p-6 bg-brown-100 dark:bg-brown-700 rounded-lg border-0 shadow-sm shadow-brown-300 dark:shadow-brown-400/50">

@@ -107,15 +107,17 @@ function App({ children }: { children?: React.ReactNode }) {
   const [mapData, setMapData] = useState<MapData | null>(null);
   const videoSectionRef = useRef<HTMLDivElement>(null);
 
-  // Load frames data
+  // Load frames data (unified loading)
   useEffect(() => {
-    setIsLoading(true);
-    fetch("/frames.json")
-      .then(response => response.json())
-      .then(data => {
+    const loadFramesData = async () => {
+      setIsLoading(true);
+      try {
+        const response = await fetch('/frames.json');
+        const data = await response.json();
+
         if (data && data.frames) {
-          // Oblicz odległości między punktami
-          const frames = data.frames.map((frame: FrameData, index: number) => {
+          // Calculate distances between frames using Leaflet's distanceTo method
+          const framesWithDistances = data.frames.map((frame: FrameData, index: number) => {
             if (index === 0) {
               return { ...frame, distance: 0, totalDistance: 0 };
             }
@@ -124,7 +126,7 @@ function App({ children }: { children?: React.ReactNode }) {
             const distance = L.latLng(prevFrame.lat, prevFrame.lng)
               .distanceTo(L.latLng(frame.lat, frame.lng));
 
-            // Oblicz całkowitą odległość od początku trasy
+            // Calculate total distance from route start
             const totalDistance = data.frames
               .slice(0, index + 1)
               .reduce((sum: number, f: FrameData, i: number) => {
@@ -141,64 +143,31 @@ function App({ children }: { children?: React.ReactNode }) {
             };
           });
 
-          setKeyFrames(frames);
+          // Set both keyFrames and mapData from the same source
+          setKeyFrames(framesWithDistances);
+          
+          // Prepare route data for map
+          const route = framesWithDistances.map((frame: FrameData) => [frame.lat, frame.lng] as [number, number]);
+          setMapData({
+            frames: framesWithDistances,
+            route
+          });
         }
+      } catch (error) {
+        console.error('Error loading frames data:', error);
+      } finally {
         setIsLoading(false);
-      })
-      .catch(error => {
-        console.error("Error loading frames data:", error);
-        setIsLoading(false);
-      });
-  }, []);
+      }
+    };
 
+    loadFramesData();
+  }, []);
 
   useEffect(() => {
     if (videoPlayerRef.current) {
       videoPlayerRef.current.currentTime = currentTime;
     }
   }, [currentTime]);
-
-  useEffect(() => {
-    const loadFramesData = async () => {
-      try {
-        const response = await fetch('/frames.json');
-        const data = await response.json();
-
-        // Calculate distances between frames
-        const framesWithDistances = data.frames.map((frame: any, index: number) => {
-          if (index === 0) {
-            return { ...frame, distance: 0, totalDistance: 0 };
-          }
-
-          const prevFrame = data.frames[index - 1];
-          const distance = calculateDistance(
-            prevFrame.lat,
-            prevFrame.lng,
-            frame.lat,
-            frame.lng
-          );
-
-          const totalDistance = data.frames
-            .slice(0, index)
-            .reduce((sum: number, f: any) => sum + (f.distance || 0), 0);
-
-          return { ...frame, distance, totalDistance };
-        });
-
-        // Prepare route data
-        const route = framesWithDistances.map((frame: any) => [frame.lat, frame.lng]);
-
-        setMapData({
-          frames: framesWithDistances,
-          route
-        });
-      } catch (error) {
-        console.error('Error loading frames data:', error);
-      }
-    };
-
-    loadFramesData();
-  }, []);
 
   return (
     <>
