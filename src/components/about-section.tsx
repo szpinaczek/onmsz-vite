@@ -173,7 +173,7 @@ export function AboutSection({ language }: AboutSectionProps) {
                   <Card className=" bg-brown-50/70 dark:bg-brown-800/70 border border-brown-200 dark:border-brown-600 shadow-sm hover:shadow-md transition-all duration-200 px-8 py-2">
                     <CardContent className="grid grid-cols-[auto_1fr] items-center h-full gap-5 px-0">
                       <div className="text-center flex flex-col items-center">
-                        <Film className="h-9 w-9 text-brown-700 dark:text-brown-300" />
+                        <Award className="h-9 w-9 text-brown-700 dark:text-brown-300" />
                         <p className="text-sm font-medium text-brown-500 dark:text-brown-400">
                           {getTranslation('filmAwards', language)}
                         </p>

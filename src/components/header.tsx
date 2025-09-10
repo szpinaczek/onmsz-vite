@@ -73,16 +73,16 @@ const Header = ({ language, handleLanguage }: HeaderProps) => {
               {isMenuOpen && (
                 <ul className="absolute top-14 left-0 z-1010 m-0 w-[50vw] flex flex-col gap-2 bg-brown-50 dark:bg-brown-500 backdrop-blur-sm border-b border-brown-100 dark:border-brown-700 pl-4">
                   <li className="mobileMenuItem md:hidden" onClick={() => {
-                        const element = document.getElementById('route-table');
+                        const element = document.getElementById('about');
                         element?.scrollIntoView({ behavior: 'smooth' });
                       }}>
-                      {getTranslation('menuRouteTable', language)}
+                      {getTranslation('menuAbout', language)}
                   </li>
                   <li className="mobileMenuItem md:hidden" onClick={() => {
-                        const element = document.getElementById('route-table');
+                        const element = document.getElementById('video');
                         element?.scrollIntoView({ behavior: 'smooth' });
                       }}>
-                      {getTranslation('menuRouteTable', language)}
+                      {getTranslation('menuFilm', language)}
                   </li>
                   <li className="mobileMenuItem md:hidden" onClick={() => {
                         const element = document.getElementById('route-table');
@@ -118,48 +118,6 @@ const Header = ({ language, handleLanguage }: HeaderProps) => {
             </div>
 
           </div>
-
-
-
-          {/* <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="md:hidden">
-                <Hamburger size={20} />
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <line x1="3" y1="12" x2="21" y2="12"></line>
-                    <line x1="3" y1="6" x2="21" y2="6"></line>
-                    <line x1="3" y1="18" x2="21" y2="18"></line>
-                  </svg>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-48">
-                <DropdownMenuItem
-                  onClick={() => {
-                    const element = document.getElementById('about');
-                    element?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                >
-                  {getTranslation('menu.about', language)}
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  onClick={() => {
-                    const element = document.getElementById('video');
-                    element?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                >
-                  {getTranslation('menu.film', language)}
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  onClick={() => {
-                    const element = document.getElementById('route-table');
-                    element?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                >
-                  {getTranslation('menu.routeTable', language)}
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu> */}
-
 
         </div>
       </div>
