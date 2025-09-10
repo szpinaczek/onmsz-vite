@@ -128,25 +128,25 @@ export function RouteTable({
                       ref={scrollViewportRef}
                       className="w-full overflow-y-auto max-h-[400px] pr-4 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-brown-100 dark:[&::-webkit-scrollbar-thumb]:bg-brown-400 [&::-webkit-scrollbar-thumb]:rounded-full"
                     >
-                      <Table className="text-[16px]">
+                      <Table className="text-[16px] table-fixed">
                         <TableHeader className="sticky top-0 bg-brown-100 dark:bg-brown-700/80 backdrop-blur-sm z-10">
                           <TableRow className="hover:bg-transparent">
-                            <TableHead className="w-[100px] text-brown-900 dark:text-brown-100 font-semibold">
+                            <TableHead className="w-[70px] text-brown-900 dark:text-brown-100 font-semibold">
                               {getTranslation('time', language)}
                             </TableHead>
                             <TableHead className="text-brown-900 dark:text-brown-100 font-semibold">
                               {getTranslation('location', language)}
                             </TableHead>
-                            <TableHead className="hidden md:table-cell w-[200px] text-brown-900 dark:text-brown-100 font-semibold">
+                            <TableHead className="hidden md:table-cell text-brown-900 dark:text-brown-100 font-semibold">
                               {getTranslation('coordinates', language)}
                             </TableHead>
-                            <TableHead className="w-[150px] text-brown-900 dark:text-brown-100 font-semibold">
+                            <TableHead className="hidden md:table-cell text-brown-900 dark:text-brown-100 font-semibold whitespace-nowrap">
                               {getTranslation('distance', language)}
                             </TableHead>
-                            <TableHead className="hidden lg:table-cell w-[120px] text-brown-900 dark:text-brown-100 font-semibold">
+                            <TableHead className="hidden lg:table-cell text-brown-900 dark:text-brown-100 font-semibold text-right">
                               {getTranslation('progress', language)}
                             </TableHead>
-                            <TableHead className="w-[100px] text-right">
+                            <TableHead className="text-right">
                             </TableHead>
                           </TableRow>
                         </TableHeader>
@@ -164,13 +164,13 @@ export function RouteTable({
                               <TableCell className="font-medium text-brown-900 dark:text-brown-100">
                                 {formatTime(frame.time)}
                               </TableCell>
-                              <TableCell className="text-brown-900 dark:text-brown-100">
+                              <TableCell className="text-brown-900 dark:text-brown-100 hyphens-auto whitespace-wrap">
                                 {frame.description[language]}
                               </TableCell>
                               <TableCell className="hidden md:table-cell text-brown-900 dark:text-brown-100">
                                 {frame.lat.toFixed(6)}, {frame.lng.toFixed(6)}
                               </TableCell>
-                              <TableCell className="text-brown-900 dark:text-brown-100">
+                              <TableCell className="hidden md:table-cell text-brown-900 dark:text-brown-100">
                                 {formatDistance(frame.totalDistance || 0)}
                               </TableCell>
                               <TableCell className="hidden lg:table-cell">
@@ -185,7 +185,7 @@ export function RouteTable({
                                 <Button
                                   variant="ghost"
                                   size="lg"
-                                  className="text-pink-500 dark:text-pink-500 hover:text-pink-700 dark:hover:text-pink-300 hover:bg-brown-100 dark:hover:bg-pink-800 transition-colors font-bold text-[14px]"
+                                  className="text-pink-500 dark:text-pink-500 hover:text-pink-700 dark:hover:text-pink-300 hover:bg-brown-100 dark:hover:bg-pink-800 transition-colors font-bold text-[14px] px-4"
                                   onClick={() => {
                                     if (videoPlayerRef.current) {
                                       videoPlayerRef.current.seekVideo(frame.time);
