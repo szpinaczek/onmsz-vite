@@ -6,7 +6,7 @@ import { getTranslation } from "./i18n/translations";
 import { Button } from "./ui/button";
 import { DialogHeader } from "./ui/dialog";
 import { Table, TableBody, TableRow, TableCell } from "./ui/table";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import GlowingCard from "./glowing-card";
 

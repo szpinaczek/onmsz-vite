@@ -2,20 +2,15 @@
 import './App.css'
 import "@fontsource/open-sans"
 import '@fontsource/special-elite';
-import { ThemeProvider, useTheme } from "./components/theme-provider"
+import { ThemeProvider } from "./components/theme-provider"
 import Header from './components/header';
 import HeroSection from './components/hero-section';
 import { useLanguage } from './components/i18n/language-context';
 import { AboutSection } from './components/about-section';
-import { getTranslation } from './components/i18n/translations';
 import { useState, useRef, useEffect } from 'react';
 import L from 'leaflet';
 import VideoPlayer, { type VideoPlayerHandle } from './components/video-player';
 import MapComponent from './components/map-section';
-// import { Table } from 'lucide-react';
-import { Button } from './components/ui/button';
-import { Card, CardContent } from './components/ui/card';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './components/ui/table';
 import type { MapData, Language } from '@/types/map';
 import { RouteTable } from './components/route-table';
 
@@ -40,7 +35,7 @@ interface FrameData {
 }
 
 
-function App({ children }: { children?: React.ReactNode }) {
+function App() {
 
   const { language, setLanguage } = useLanguage();
 
@@ -48,7 +43,7 @@ function App({ children }: { children?: React.ReactNode }) {
     setLanguage(data)
   };
 
-  const handleFullscreenChange = (isFullscreen: boolean) => {
+  const handleFullscreenChange = (isFullscreen: boolean) => { //eslint-disable-line
     // Handle fullscreen change if needed
   };
 
@@ -80,25 +75,25 @@ function App({ children }: { children?: React.ReactNode }) {
   };
 
 
-  const calculateDistance = (lat1: number, lon1: number, lat2: number, lon2: number) => {
-    const R = 6371; // Earth's radius in km
-    const dLat = toRad(lat2 - lat1);
-    const dLon = toRad(lon2 - lon1);
-    const a =
-      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    return R * c;
-  };
+  // const calculateDistance = (lat1: number, lon1: number, lat2: number, lon2: number) => {
+  //   const R = 6371; // Earth's radius in km
+  //   const dLat = toRad(lat2 - lat1);
+  //   const dLon = toRad(lon2 - lon1);
+  //   const a =
+  //     Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+  //     Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  //   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  //   return R * c;
+  // };
 
-  const toRad = (value: number) => {
-    return (value * Math.PI) / 180;
-  };
+  // const toRad = (value: number) => {
+  //   return (value * Math.PI) / 180;
+  // };
 
 
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [keyFrames, setKeyFrames] = useState<FrameData[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(true); //eslint-disable-line
   const videoPlayerRef = useRef<VideoPlayerHandle>(null);
   const mapRef = useRef<MapComponentHandle>(null);
   const isMapUpdating = useRef<boolean>(false);
