@@ -43,9 +43,9 @@ function App() {
     setLanguage(data)
   };
 
-  const handleFullscreenChange = (isFullscreen: boolean) => { //eslint-disable-line
-    // Handle fullscreen change if needed
-  };
+  // const handleFullscreenChange = (isFullscreen: boolean = false) => { // eslint-disable-line
+  //   // Handle fullscreen change if needed
+  // };
 
   const handleTimeUpdate = (time: number) => {
     if (!isMapUpdating.current) {
@@ -93,7 +93,7 @@ function App() {
 
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [keyFrames, setKeyFrames] = useState<FrameData[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true); //eslint-disable-line
+  // const [isLoading, setIsLoading] = useState<boolean>(true);
   const videoPlayerRef = useRef<VideoPlayerHandle>(null);
   const mapRef = useRef<MapComponentHandle>(null);
   const isMapUpdating = useRef<boolean>(false);
@@ -105,7 +105,7 @@ function App() {
   // Load frames data (unified loading)
   useEffect(() => {
     const loadFramesData = async () => {
-      setIsLoading(true);
+      // setIsLoading(true);
       try {
         const response = await fetch('/frames.json');
         const data = await response.json();
@@ -150,9 +150,10 @@ function App() {
         }
       } catch (error) {
         console.error('Error loading frames data:', error);
-      } finally {
-        setIsLoading(false);
       }
+      // finally {
+      //   setIsLoading(false);
+      // }
     };
 
     loadFramesData();
@@ -187,7 +188,7 @@ function App() {
                         ref={videoPlayerRef}
                         onTimeUpdate={handleTimeUpdate}
                         onFrameChange={handleTimeUpdate}
-                        onFullscreenChange={handleFullscreenChange}
+                        // onFullscreenChange={handleFullscreenChange}
                         language={language}
                       />
                     </div>

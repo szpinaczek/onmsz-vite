@@ -37,7 +37,7 @@ interface KeyFrame {
   };
 }
 
-const VideoPlayer = forwardRef<VideoPlayerHandle, VideoPlayerProps>(({ onTimeUpdate, onFrameChange, onFullscreenChange, language = 'pl' }, ref) => {
+const VideoPlayer = forwardRef<VideoPlayerHandle, VideoPlayerProps>(({ onTimeUpdate, onFrameChange, language = 'pl' }, ref) => {
   const videoRef = useRef<HTMLVideoElement>(null);
 //   const containerRef = useRef<HTMLDivElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -100,7 +100,7 @@ const VideoPlayer = forwardRef<VideoPlayerHandle, VideoPlayerProps>(({ onTimeUpd
 
   const toggleFullscreen = () => {
     setIsFullscreen(!isFullscreen);
-    onFullscreenChange?.(!isFullscreen);
+    // onFullscreenChange?.(!isFullscreen);
   };
 
   useEffect(() => {

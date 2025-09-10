@@ -320,11 +320,11 @@ const MapComponent = forwardRef<MapComponentHandle, MapComponentProps>(({ curren
   };
 
   // Format time in MM:SS format
-  const formatTime = (timeInSeconds: number) => { //eslint-disable-line
-    const minutes = Math.floor(timeInSeconds / 60);
-    const seconds = Math.floor(timeInSeconds % 60);
-    return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-  };
+  // const formatTime = (timeInSeconds: number) => { 
+  //   const minutes = Math.floor(timeInSeconds / 60);
+  //   const seconds = Math.floor(timeInSeconds % 60);
+  //   return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+  // };
 
   const MapUpdater = ({ position }: { position: [number, number] }) => {
     const map = useMap();
