@@ -117,6 +117,9 @@
 
 /* Base styles */
 @layer base {
+  .info-icon {
+    @apply h-[32px] w-[32px] text-brown-700 dark:text-brown-300
+  }
   * {
     /* border-color: hsl(var(--color-border)); */
     text-align: left;
