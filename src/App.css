@@ -118,7 +118,11 @@
 /* Base styles */
 @layer base {
   .info-icon {
-    @apply h-[32px] w-[32px] text-brown-700 dark:text-brown-300
+    @apply h-[32px] w-[32px] text-brown-700 dark:text-brown-300;
+  }
+
+  .tabs-trigger {
+    @apply text-base data-[state=active]:bg-brown-200/40 dark:data-[state=active]:bg-brown-500 data-[state=active]:text-brown-900 dark:data-[state=active]:text-brown-50 hover:bg-brown-100 transition-all duration-200 rounded-lg flex items-center gap-3 cursor-pointer;
   }
   * {
     /* border-color: hsl(var(--color-border)); */
@@ -187,7 +191,8 @@
   display: inline-block;
   /* padding: 1em 0; */
   background-color: var(--color-brown-50);
-  box-shadow: 0.5em 0 0 var(--color-brown-500), -0.5em 0 0 var(--color-brown-500);
+  box-shadow: 0.5em 0 0 var(--color-brown-500),
+    -0.5em 0 0 var(--color-brown-500);
   box-decoration-break: clone;
   line-height: 3;
   clip-path: polygon(

@@ -1,6 +1,6 @@
 import { Dialog, DialogTrigger, DialogContent, DialogTitle } from "./ui/dialog";
 import { ScrollArea } from "./ui/scroll-area";
-import { Bookmark, MapPin, Calendar, Film, User, Camera, Clock, Award, CalendarX, GraduationCap, Clapperboard, Trophy, Fingerprint, Baby } from "lucide-react";
+import { Bookmark, MapPin, Calendar, Film, User, Camera, Clock, Award, CalendarX, GraduationCap, Clapperboard, Trophy, Fingerprint, Baby, Building2, CalendarCheck } from "lucide-react";
 import type { Language } from "./i18n/translations";
 import { getTranslation } from "./i18n/translations";
 import { Button } from "./ui/button";
@@ -88,7 +88,7 @@ export function AboutSection({ language }: AboutSectionProps) {
       </GlowingCard>
 
       <GlowingCard>
-        <CardHeader className="border-b border-brown-200 dark:border-brown-600">
+        <CardHeader className="border-b border-brown-200/30 dark:border-brown-600">
           <CardTitle className="text-2xl font-bold tracking-tight text-brown-900 dark:text-brown-100 flex items-center gap-2">
             <Film className="h-6 w-6" />
             <h3>
@@ -98,24 +98,24 @@ export function AboutSection({ language }: AboutSectionProps) {
         </CardHeader>
         <CardContent className="pt-6">
           <Tabs defaultValue="film" className="w-full">
-            <TabsList className="mb-8 bg-brown-200/50 dark:bg-brown-600/50 p-1 rounded-xl">
+            <TabsList className="mb-8 bg-brown-200/30 dark:bg-brown-700 p-1 rounded-xl">
               <TabsTrigger
                 value="film"
-                className="text-base data-[state=active]:bg-brown-100 dark:data-[state=active]:bg-brown-500 data-[state=active]:text-brown-900 dark:data-[state=active]:text-brown-50 transition-all duration-200 rounded-lg flex items-center gap-2"
+                className="tabs-trigger"
               >
                 <Film className="h-4 w-4" />
                 {getTranslation('aboutFilm', language)}
               </TabsTrigger>
               <TabsTrigger
                 value="director"
-                className="text-base data-[state=active]:bg-brown-100 dark:data-[state=active]:bg-brown-500 data-[state=active]:text-brown-900 dark:data-[state=active]:text-brown-50 transition-all duration-200 rounded-lg flex items-center gap-2"
+                className="tabs-trigger"
               >
                 <User className="h-4 w-4" />
                 {getTranslation('aboutDirector', language)}
               </TabsTrigger>
               <TabsTrigger
                 value="location"
-                className="text-base data-[state=active]:bg-brown-100 dark:data-[state=active]:bg-brown-500 data-[state=active]:text-brown-900 dark:data-[state=active]:text-brown-50 transition-all duration-200 rounded-lg flex items-center gap-2"
+                className="tabs-trigger"
               >
                 <MapPin className="h-4 w-4" />
                 {getTranslation('location', language)}
@@ -125,7 +125,7 @@ export function AboutSection({ language }: AboutSectionProps) {
             <TabsContent value="film" className="space-y-6">
               <ScrollArea className="h-[300px] pr-4">
 
-                <div className="bg-brown-100/50 dark:bg-brown-600/50 p-4 rounded-lg mb-6 border-l-4 border-brown-400 dark:border-brown-300">
+                <div className="bg-brown-200/30 dark:bg-brown-700 p-4 rounded-lg mb-6 border-l-4 border-brown-400 dark:border-brown-300">
                   <p className="text-md text-brown-900 dark:text-brown-100 italic">
                     {getTranslation('filmDescription', language)}
                   </p>
@@ -134,7 +134,7 @@ export function AboutSection({ language }: AboutSectionProps) {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
 
                   <InfoCard>
-                    <Clapperboard className="info-icon" />
+                    <CalendarCheck className="info-icon" />
                     <div className="flex justify-start align-center flex-col">
                       <p className="text-sm font-medium text-brown-500 dark:text-brown-400">
                         {getTranslation('filmYear', language)}
@@ -364,7 +364,7 @@ export function AboutSection({ language }: AboutSectionProps) {
 
             <TabsContent value="director" className="space-y-4">
               <ScrollArea className="h-[300px] pr-4">
-                <div className="bg-brown-100/50 dark:bg-brown-600/50 p-4 rounded-lg mb-6 border-l-4 border-brown-400 dark:border-brown-300">
+                <div className="bg-brown-200/30 dark:bg-brown-700 p-4 rounded-lg mb-6 border-l-4 border-brown-400 dark:border-brown-300">
                   <p className="text-md text-brown-900 dark:text-brown-100 italic">
                     {getTranslation('directorDescription', language)}
                   </p>
@@ -373,7 +373,7 @@ export function AboutSection({ language }: AboutSectionProps) {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
 
                   <InfoCard>
-                    <Baby className="info-icon"/>
+                    <Baby className="info-icon" />
                     <div className="flex justify-start align-center flex-col gap-2">
                       <p className="text-sm font-medium text-brown-500 dark:text-brown-400">
                         {getTranslation('directorBorn', language)}
@@ -385,7 +385,7 @@ export function AboutSection({ language }: AboutSectionProps) {
                   </InfoCard>
 
                   <InfoCard>
-                    <GraduationCap className="info-icon"/>
+                    <GraduationCap className="info-icon" />
                     <div className="flex justify-start align-center flex-col gap-2">
                       <p className="text-sm font-medium text-brown-500 dark:text-brown-400">
                         {getTranslation('directorEducation', language)}
@@ -397,7 +397,7 @@ export function AboutSection({ language }: AboutSectionProps) {
                   </InfoCard>
 
                   <InfoCard>
-                    <Trophy className="info-icon"/>
+                    <Trophy className="info-icon" />
                     <div className="flex justify-start align-center flex-col gap-2">
                       <p className="text-sm font-medium text-brown-500 dark:text-brown-400">
                         {getTranslation('directorAchievements', language)}
@@ -409,11 +409,11 @@ export function AboutSection({ language }: AboutSectionProps) {
                   </InfoCard>
 
                   <InfoCard>
-                    <Fingerprint className="info-icon"/>
+                    <Fingerprint className="info-icon" />
                     <div className="flex justify-start align-center flex-col gap-2">
                       <p className="text-sm font-medium text-brown-500 dark:text-brown-400">
-                          {getTranslation('directorLegacy', language)}
-                        </p>
+                        {getTranslation('directorLegacy', language)}
+                      </p>
                       <p className="text-brown-900 dark:text-brown-100 text-sm lg:text-md">
                         {getTranslation('directorLegacyValue', language)}
                       </p>
@@ -426,7 +426,7 @@ export function AboutSection({ language }: AboutSectionProps) {
 
             <TabsContent value="location" className="space-y-4">
               <ScrollArea className="h-[300px] pr-4">
-                <div className="bg-brown-100/50 dark:bg-brown-600/50 p-4 rounded-lg mb-6 border-l-4 border-brown-400 dark:border-brown-300">
+                <div className="bg-brown-200/30 dark:bg-brown-700 p-4 rounded-lg mb-6 border-l-4 border-brown-400 dark:border-brown-300">
                   <p className="text-md text-brown-900 dark:text-brown-100 italic">
                     {getTranslation('locationDescription', language)}
                   </p>
@@ -434,61 +434,54 @@ export function AboutSection({ language }: AboutSectionProps) {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
 
-                  <Card className="bg-brown-50/70 dark:bg-brown-800/70 border border-brown-200 dark:border-brown-600 shadow-sm hover:shadow-md transition-all duration-200">
-                    <CardContent className="p-4">
-                      <div className="flex items-center gap-5 mb-2">
-                        <MapPin className="h-6 w-6 text-brown-700 dark:text-brown-300" />
-                        <p className="text-sm font-medium text-brown-500 dark:text-brown-400">
-                          {getTranslation('locationCity', language)}
-                        </p>
-                      </div>
-                      <p className="text-brown-900 dark:text-brown-100 pl-9">
+                  <InfoCard>
+                    <Building2 className="info-icon" />
+                    <div className="flex justify-start align-center flex-col gap-2">
+                      <p className="text-sm font-medium text-brown-500 dark:text-brown-400">
+                        {getTranslation('locationCity', language)}
+                      </p>
+                      <p className="text-brown-900 dark:text-brown-100 text-sm lg:text-md">
                         {getTranslation('locationCityValue', language)}
                       </p>
-                    </CardContent>
-                  </Card>
+                    </div>
+                  </InfoCard>
 
-                  <Card className="bg-brown-50/70 dark:bg-brown-800/70 border border-brown-200 dark:border-brown-600 shadow-sm hover:shadow-md transition-all duration-200">
-                    <CardContent className="p-4">
-                      <div className="flex items-center gap-5 mb-2">
-                        <Film className="h-6 w-6 text-brown-700 dark:text-brown-300" />
-                        <p className="text-sm font-medium text-brown-500 dark:text-brown-400">
-                          {getTranslation('locationStudio', language)}
-                        </p>
-                      </div>
-                      <p className="text-brown-900 dark:text-brown-100 pl-9">
+                  <InfoCard>
+                    <Clapperboard className="info-icon" />
+                    <div className="flex justify-start align-center flex-col gap-2">
+                      <p className="text-sm font-medium text-brown-500 dark:text-brown-400">
+                        {getTranslation('locationStudio', language)}
+                      </p>
+                      <p className="text-brown-900 dark:text-brown-100 text-sm lg:text-md">
                         {getTranslation('locationStudioValue', language)}
                       </p>
-                    </CardContent>
-                  </Card>
+                    </div>
+                  </InfoCard>
 
-                  <Card className="bg-brown-50/70 dark:bg-brown-800/70 border border-brown-200 dark:border-brown-600 shadow-sm hover:shadow-md transition-all duration-200">
-                    <CardContent className="p-4">
-                      <div className="flex items-center gap-5 mb-2">
-                        <Bookmark className="h-6 w-6 text-brown-700 dark:text-brown-300" />
-                        <p className="text-sm font-medium text-brown-500 dark:text-brown-400">
-                          {getTranslation('locationSignificance', language)}
-                        </p>
-                      </div>
-                      <p className="text-brown-900 dark:text-brown-100 pl-9">
+                  <InfoCard>
+                    <Bookmark className="info-icon" />
+                    <div className="flex justify-start align-center flex-col gap-2">
+                      <p className="text-sm font-medium text-brown-500 dark:text-brown-400">
+                        {getTranslation('locationSignificance', language)}
+                      </p>
+                      <p className="text-brown-900 dark:text-brown-100 text-sm lg:text-md">
                         {getTranslation('locationSignificanceValue', language)}
                       </p>
-                    </CardContent>
-                  </Card>
+                    </div>
+                  </InfoCard>
 
-                  <Card className="bg-brown-50/70 dark:bg-brown-800/70 border border-brown-200 dark:border-brown-600 shadow-sm hover:shadow-md transition-all duration-200">
-                    <CardContent className="p-4">
-                      <div className="flex items-center gap-5 mb-2">
-                        <CalendarX className="h-6 w-6 text-brown-700 dark:text-brown-300" />
-                        <p className="text-sm font-medium text-brown-500 dark:text-brown-400">
-                          {getTranslation('locationToday', language)}
-                        </p>
-                      </div>
-                      <p className="text-brown-900 dark:text-brown-100 pl-9">
+                  <InfoCard>
+                    <CalendarX className="info-icon" />
+                    <div className="flex justify-start align-center flex-col gap-2">
+                      <p className="text-sm font-medium text-brown-500 dark:text-brown-400">
+                        {getTranslation('locationToday', language)}
+                      </p>
+                      <p className="text-brown-900 dark:text-brown-100 text-sm lg:text-md">
                         {getTranslation('locationTodayValue', language)}
                       </p>
-                    </CardContent>
-                  </Card>
+                    </div>
+                  </InfoCard>
+
                 </div>
               </ScrollArea>
             </TabsContent>
