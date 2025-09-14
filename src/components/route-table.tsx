@@ -73,19 +73,19 @@ export function RouteTable({
 
   const getSpeedColorClass = (speed?: number): string => {
     if (!speed || speed === 0) {
-      return 'bg-earls-green-300 text-earls-green-900 dark:bg-earls-green-900 dark:text-earls-green-200';
+      return 'bg-earls-green-300 text-earls-green-900 dark:bg-earls-green-400 dark:text-earls-green-950';
     } else if (speed <= 10) {
       // Walking/slow movement - green
-      return 'bg-earls-green-300 text-earls-green-900 dark:bg-earls-green-900 dark:text-earls-green-200';
+      return 'bg-earls-green-300 text-earls-green-900 dark:bg-earls-green-400 dark:text-earls-green-950';
     } else if (speed <= 50) {
       // Fast walking to running - yellow
-      return 'bg-picasso-400 text-picasso-900 dark:bg-picasso-900 dark:text-picasso-200';
+      return 'bg-picasso-400 text-picasso-900 dark:bg-picasso-500 dark:text-picasso-950';
     } else if (speed <= 150) {
       // Supernatural speed - blue
-      return 'bg-orange-300 text-orange-800 dark:bg-orange-900 dark:text-orange-200';
+      return 'bg-orange-300 text-orange-800 dark:bg-orange-400 dark:text-orange-950';
     } else {
       // Extreme speed - red
-      return 'bg-brick-500 text-brick-100 dark:bg-brick-900 dark:text-brick-200';
+      return 'bg-brick-500 text-brick-100 dark:bg-brick-600 dark:text-brick-100';
     }
   };
 
@@ -192,7 +192,7 @@ export function RouteTable({
                               ref={setRowRef(index)}
                               className={`hover:bg-brown-50/50 dark:hover:bg-brown-800/30 transition-colors border-b border-brown-100 dark:border-brown-500 ${
                                 currentTime >= frame.time && (index === keyFrames.length - 1 || currentTime < keyFrames[index + 1].time)
-                                  ? "bg-primary/20 dark:bg-primary/20"
+                                  ? "bg-brown-200 dark:bg-primary/20"
                                   : ""
                               }`}
                             >
