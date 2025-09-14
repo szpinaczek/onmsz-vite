@@ -32,6 +32,7 @@ interface FrameData {
   };
   distance?: number;
   totalDistance?: number;
+  speed?: number;
 }
 
 
@@ -111,10 +112,10 @@ function App() {
         const data = await response.json();
 
         if (data && data.frames) {
-          // Calculate distances between frames using Leaflet's distanceTo method
-          const framesWithDistances = data.frames.map((frame: FrameData, index: number) => {
+          // Calculate distances and speeds between frames using Leaflet's distanceTo method
+          const framesWithDistancesAndSpeeds = data.frames.map((frame: FrameData, index: number) => {
             if (index === 0) {
-              return { ...frame, distance: 0, totalDistance: 0 };
+              return { ...frame, distance: 0, totalDistance: 0, speed: 0 };
             }
 
             const prevFrame = data.frames[index - 1];
@@ -131,20 +132,41 @@ function App() {
                   .distanceTo(L.latLng(f.lat, f.lng));
               }, 0);
 
+            // Calculate smooth progressive speed (supernatural acceleration)
+            let speed = 0;
+            
+            if (index === 1) {
+              // Second frame: fast walking pace
+              speed = 6.5; // km/h
+            } else if (index > 1) {
+              // Smooth exponential acceleration from walking to supernatural speeds
+              const totalFrames = data.frames.length - 1; // Exclude first frame (index 0)
+              const currentFrameProgress = (index - 1) / (totalFrames - 1); // 0 to 1
+              
+              const startSpeed = 6.5; // km/h (fast walking)
+              const endSpeed = 300; // km/h (supernatural final speed)
+              
+              // Exponential curve for realistic acceleration feeling
+              // Using power of 1.8 for smooth but noticeable acceleration
+              const accelerationCurve = Math.pow(currentFrameProgress, 1.8);
+              speed = startSpeed + (endSpeed - startSpeed) * accelerationCurve;
+            }
+
             return {
               ...frame,
               distance: Math.round(distance),
-              totalDistance: Math.round(totalDistance)
+              totalDistance: Math.round(totalDistance),
+              speed: Math.round(speed * 10) / 10 // Round to 1 decimal place
             };
           });
 
           // Set both keyFrames and mapData from the same source
-          setKeyFrames(framesWithDistances);
+          setKeyFrames(framesWithDistancesAndSpeeds);
           
           // Prepare route data for map
-          const route = framesWithDistances.map((frame: FrameData) => [frame.lat, frame.lng] as [number, number]);
+          const route = framesWithDistancesAndSpeeds.map((frame: FrameData) => [frame.lat, frame.lng] as [number, number]);
           setMapData({
-            frames: framesWithDistances,
+            frames: framesWithDistancesAndSpeeds,
             route
           });
         }

@@ -5,6 +5,7 @@ import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from ".
 import { MiniDistanceChart } from "./mini-distance-chart";
 import { useRef, useEffect } from 'react';
 import type { Language } from '@/types/map';
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
 // Types
 interface FrameData {
@@ -21,6 +22,7 @@ interface FrameData {
   };
   distance?: number;
   totalDistance?: number;
+  speed?: number;
 }
 
 interface VideoPlayerHandle {
@@ -62,6 +64,29 @@ export function RouteTable({
       return `${(meters / 1000).toFixed(2)} km`;
     }
     return `${meters} m`;
+  };
+
+  const formatSpeed = (speed?: number): string => {
+    if (speed === undefined || speed === 0) return '—';
+    return `${speed} km/h`;
+  };
+
+  const getSpeedColorClass = (speed?: number): string => {
+    if (!speed || speed === 0) {
+      return 'bg-earls-green-300 text-earls-green-900 dark:bg-earls-green-900 dark:text-earls-green-200';
+    } else if (speed <= 10) {
+      // Walking/slow movement - green
+      return 'bg-earls-green-300 text-earls-green-900 dark:bg-earls-green-900 dark:text-earls-green-200';
+    } else if (speed <= 50) {
+      // Fast walking to running - yellow
+      return 'bg-picasso-400 text-picasso-900 dark:bg-picasso-900 dark:text-picasso-200';
+    } else if (speed <= 150) {
+      // Supernatural speed - blue
+      return 'bg-orange-300 text-orange-800 dark:bg-orange-900 dark:text-orange-200';
+    } else {
+      // Extreme speed - red
+      return 'bg-brick-500 text-brick-100 dark:bg-brick-900 dark:text-brick-200';
+    }
   };
 
   // Function to set row references
@@ -143,7 +168,17 @@ export function RouteTable({
                             <TableHead className="hidden md:table-cell text-brown-900 dark:text-brown-100 font-semibold whitespace-nowrap">
                               {getTranslation('distance', language)}
                             </TableHead>
-                            <TableHead className="hidden lg:table-cell text-brown-900 dark:text-brown-100 font-semibold text-right">
+                            <Tooltip>
+                            <TooltipTrigger asChild>
+                              <TableHead className="hidden lg:table-cell text-brown-900 dark:text-brown-100 font-semibold text-center whitespace-nowrap">
+                                {getTranslation('speed', language)}
+                              </TableHead>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>{getTranslation('speedTooltip', language)}</p>
+                            </TooltipContent>
+                            </Tooltip>
+                            <TableHead className="hidden xl:table-cell text-brown-900 dark:text-brown-100 font-semibold text-center">
                               {getTranslation('progress', language)}
                             </TableHead>
                             <TableHead className="text-right">
@@ -173,7 +208,12 @@ export function RouteTable({
                               <TableCell className="hidden md:table-cell text-brown-900 dark:text-brown-100">
                                 {formatDistance(frame.totalDistance || 0)}
                               </TableCell>
-                              <TableCell className="hidden lg:table-cell">
+                              <TableCell className="hidden lg:table-cell text-center">
+                                <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${getSpeedColorClass(frame.speed)}`}>
+                                  {formatSpeed(frame.speed)}
+                                </span>
+                              </TableCell>
+                              <TableCell className="hidden xl:table-cell text-center">
                                 <MiniDistanceChart
                                   frames={keyFrames}
                                   currentIndex={index}

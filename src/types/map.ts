@@ -14,6 +14,7 @@ export interface Frame {
   };
   distance?: number;
   totalDistance?: number;
+  speed?: number;
 }
 
 export interface MapData {

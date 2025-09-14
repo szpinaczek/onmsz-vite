@@ -46,7 +46,7 @@ export function MiniTimeDistanceChart({ frames, currentIndex, className = "", la
     if (active && payload && payload.length) {
       const data = payload[0].payload;
       return (
-        <div className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded p-2 shadow-lg text-xs">
+        <div className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded p-2 shadow-lg text-xs z-30">
           <p className="text-gray-900 dark:text-gray-100">
             <strong>Czas:</strong> {Math.floor(data.time / 60)}:{(data.time % 60).toFixed(0).padStart(2, '0')}
           </p>
