@@ -73,10 +73,10 @@ export function RouteTable({
 
   const getSpeedColorClass = (speed?: number): string => {
     if (!speed || speed === 0) {
-      return 'bg-earls-green-300 text-earls-green-900 dark:bg-earls-green-400 dark:text-earls-green-950';
+      return 'bg-earls-green-300 text-earls-green-900 dark:bg-earls-green-500 dark:text-earls-green-950';
     } else if (speed <= 10) {
       // Walking/slow movement - green
-      return 'bg-earls-green-300 text-earls-green-900 dark:bg-earls-green-400 dark:text-earls-green-950';
+      return 'bg-earls-green-300 text-earls-green-900 dark:bg-earls-green-500 dark:text-earls-green-950';
     } else if (speed <= 50) {
       // Fast walking to running - yellow
       return 'bg-picasso-400 text-picasso-900 dark:bg-picasso-500 dark:text-picasso-950';

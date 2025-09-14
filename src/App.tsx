@@ -13,6 +13,7 @@ import VideoPlayer, { type VideoPlayerHandle } from './components/video-player';
 import MapComponent from './components/map-section';
 import type { MapData, Language } from '@/types/map';
 import { RouteTable } from './components/route-table';
+import Footer from './components/footer';
 
 interface MapComponentHandle {
   seekToTime: (time: number) => void;
@@ -134,7 +135,7 @@ function App() {
 
             // Calculate smooth progressive speed (supernatural acceleration)
             let speed = 0;
-            
+
             if (index === 1) {
               // Second frame: fast walking pace
               speed = 6.5; // km/h
@@ -142,10 +143,10 @@ function App() {
               // Smooth exponential acceleration from walking to supernatural speeds
               const totalFrames = data.frames.length - 1; // Exclude first frame (index 0)
               const currentFrameProgress = (index - 1) / (totalFrames - 1); // 0 to 1
-              
+
               const startSpeed = 6.5; // km/h (fast walking)
               const endSpeed = 300; // km/h (supernatural final speed)
-              
+
               // Exponential curve for realistic acceleration feeling
               // Using power of 1.8 for smooth but noticeable acceleration
               const accelerationCurve = Math.pow(currentFrameProgress, 1.8);
@@ -162,7 +163,7 @@ function App() {
 
           // Set both keyFrames and mapData from the same source
           setKeyFrames(framesWithDistancesAndSpeeds);
-          
+
           // Prepare route data for map
           const route = framesWithDistancesAndSpeeds.map((frame: FrameData) => [frame.lat, frame.lng] as [number, number]);
           setMapData({
@@ -231,17 +232,18 @@ function App() {
                 </div>
 
                 <div id="route-table">
-                <RouteTable
-                  keyFrames={keyFrames}
-                  language={language}
-                  currentTime={currentTime}
-                  videoPlayerRef={videoPlayerRef}
-                  videoSectionRef={videoSectionRef}
-                />
-              </div>
+                  <RouteTable
+                    keyFrames={keyFrames}
+                    language={language}
+                    currentTime={currentTime}
+                    videoPlayerRef={videoPlayerRef}
+                    videoSectionRef={videoSectionRef}
+                  />
+                </div>
 
               </div>
             </div>
+            <Footer />
           </div>
         </div>
       </ThemeProvider>
