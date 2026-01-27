@@ -2,7 +2,7 @@ import { getTranslation } from "./i18n/translations";
 import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "./ui/table";
-import { MiniDistanceChart } from "./mini-distance-chart";
+// import { MiniDistanceChart } from "./mini-distance-chart";
 import { useRef, useEffect } from 'react';
 import type { Language } from '@/types/map';
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
@@ -178,9 +178,9 @@ export function RouteTable({
                               <p>{getTranslation('speedTooltip', language)}</p>
                             </TooltipContent>
                             </Tooltip>
-                            <TableHead className="hidden xl:table-cell text-brown-900 dark:text-brown-100 font-semibold text-center">
+                            {/* <TableHead className="hidden xl:table-cell text-brown-900 dark:text-brown-100 font-semibold text-center">
                               {getTranslation('progress', language)}
-                            </TableHead>
+                            </TableHead> */}
                             <TableHead className="text-right">
                             </TableHead>
                           </TableRow>
@@ -213,14 +213,14 @@ export function RouteTable({
                                   {formatSpeed(frame.speed)}
                                 </span>
                               </TableCell>
-                              <TableCell className="hidden xl:table-cell text-center">
+                              {/* <TableCell className="hidden xl:table-cell text-center">
                                 <MiniDistanceChart
                                   frames={keyFrames}
                                   currentIndex={index}
                                   className="mx-auto"
                                   language={language}
                                 />
-                              </TableCell>
+                              </TableCell> */}
                               <TableCell className="text-right">
                                 <Button
                                   variant="ghost"
