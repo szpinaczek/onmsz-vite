@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Maps Street View Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        #street-view {
+            height: 400px;
+            width: 100%;
+            margin: 20px 0;
+        }
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            color: #666;
+        }
+        .error {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            color: #f00;
+        }
+    </style>
+</head>
+<body>
+    <h1>Google Maps Street View Test</h1>
+    
+    <div class="controls">
+        <button id="load-btn">Load Street View</button>
+        <button id="update-btn">Update Position</button>
+    </div>
+    
+    <div id="loading" class="loading">Loading Google Maps...</div>
+    <div id="error" class="error">Error loading Google Maps</div>
+    <div id="street-view"></div>
+
+    <script>
+        // Your Google Maps API key
+        const API_KEY = 'AIzaSyCC0GCc8OLBTttmd-zDInyltcZdlLx0oU8';
+        
+        // Current position
+        let currentPosition = { lat: 51.8086928, lng: 19.4710456 };
+        
+        // Load Google Maps API
+        function loadGoogleMaps() {
+            return new Promise((resolve, reject) => {
+                if (window.google?.maps) {
+                    resolve();
+                    return;
+                }
+                
+                const script = document.createElement('script');
+                script.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&libraries=streetview`;
+                script.async = true;
+                script.defer = true;
+                
+                script.onload = () => {
+                    if (window.google?.maps) {
+                        resolve();
+                    } else {
+                        reject(new Error('Google Maps API loaded but maps property not found'));
+                    }
+                };
+                
+                script.onerror = () => {
+                    reject(new Error('Failed to load Google Maps API'));
+                };
+                
+                document.head.appendChild(script);
+            });
+        }
+        
+        // Initialize Street View
+        function initStreetView() {
+            const container = document.getElementById('street-view');
+            if (!container || !window.google?.maps) return;
+            
+            const panorama = new window.google.maps.StreetViewPanorama(container, {
+                position: currentPosition,
+                pov: { heading: 0, pitch: 0 },
+                zoom: 1
+            });
+            
+            console.log('Street View initialized');
+        }
+        
+        // Update position
+        function updatePosition() {
+            // Move slightly from current position
+            currentPosition = {
+                lat: currentPosition.lat + (Math.random() - 0.5) * 0.01,
+                lng: currentPosition.lng + (Math.random() - 0.5) * 0.01
+            };
+            
+            initStreetView();
+        }
+        
+        // Load button handler
+        document.getElementById('load-btn').addEventListener('click', async () => {
+            const loadingDiv = document.getElementById('loading');
+            const errorDiv = document.getElementById('error');
+            
+            loadingDiv.style.display = 'block';
+            errorDiv.style.display = 'none';
+            
+            try {
+                await loadGoogleMaps();
+                initStreetView();
+            } catch (err) {
+                console.error('Error loading Street View:', err);
+                errorDiv.textContent = err.message;
+                errorDiv.style.display = 'block';
+            } finally {
+                loadingDiv.style.display = 'none';
+            }
+        });
+        
+        // Update button handler
+        document.getElementById('update-btn').addEventListener('click', () => {
+            const errorDiv = document.getElementById('error');
+            errorDiv.style.display = 'none';
+            
+            if (!window.google?.maps) {
+                errorDiv.textContent = 'Please load Google Maps first';
+                errorDiv.style.display = 'block';
+                return;
+            }
+            
+            updatePosition();
+        });
+    </script>
+</body>
+</html>

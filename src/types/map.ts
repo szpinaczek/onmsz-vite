@@ -27,8 +27,21 @@ export interface MapComponentProps {
   currentTime: number;
   onTimeUpdate: (time: number) => void;
   language: Language;
+  apiKey?: string;
 }
 
 export interface MapComponentHandle {
   seekToTime: (time: number) => void;
 } 
+
+export interface GoogleMapData extends MapData {
+  apiKey: string;
+}
+
+export interface StreetViewData {
+  panoId?: string;
+  heading?: number;
+  pitch?: number;
+  available: boolean;
+  error?: string;
+}

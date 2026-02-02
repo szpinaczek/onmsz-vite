@@ -169,7 +169,8 @@ const VideoPlayer = forwardRef<VideoPlayerHandle, VideoPlayerProps>(({ onTimeUpd
           });
       }
     },
-    seekVideo: (time: number) => {
+     seekVideo: (time: number) => {
+      console.log("VideoPlayer.seekVideo called with time:", time);
       if (videoRef.current) {
         isUserSeeking.current = true;
         videoRef.current.currentTime = time;

@@ -227,10 +227,14 @@ export function RouteTable({
                                   size="lg"
                                   className="text-pink-500 dark:text-pink-500 hover:text-pink-700 dark:hover:text-pink-300 hover:bg-brown-100 dark:hover:bg-pink-800 transition-colors font-bold text-[14px] px-4"
                                   onClick={() => {
+                                    console.log("RouteTable: Jump to frame clicked", frame);
                                     if (videoPlayerRef.current) {
+                                      console.log("RouteTable: Video player ref is available");
                                       videoPlayerRef.current.seekVideo(frame.time);
                                       scrollToRow(index);
                                       scrollToVideo();
+                                    } else {
+                                      console.log("RouteTable: Video player ref is null");
                                     }
                                   }}
                                 >

@@ -9,9 +9,10 @@ import { useState } from "react"
 interface HeaderProps {
   language: Language;
   handleLanguage: (data: Language) => void;
+  onToggleStreetView?: () => void;
 }
 
-const Header = ({ language, handleLanguage }: HeaderProps) => {
+const Header = ({ language, handleLanguage, onToggleStreetView }: HeaderProps) => {
   // const { language, setLanguage } = useLanguage();
 
   const [isMenuOpen, setMenuOpen] = useState(false)
@@ -96,6 +97,15 @@ const Header = ({ language, handleLanguage }: HeaderProps) => {
 
             {/* Flags and theme toggle */}
             <div className="flex items-center gap-2 ml-auto">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={onToggleStreetView}
+                className="h-8 w-8"
+                title={getTranslation('streetView', language)}
+              >
+                📍
+              </Button>
               <div className="flex items-center gap-1 bg-brown-100 dark:bg-brown-500 rounded-lg p-1">
                 <Button
                   variant="ghost"
@@ -125,4 +135,6 @@ const Header = ({ language, handleLanguage }: HeaderProps) => {
   )
 }
 
-export default Header
+export default Header;
+
+

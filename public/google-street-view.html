@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Street View</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+        }
+        #map {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+
+    <script>
+        // Extract parameters from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const lat = parseFloat(urlParams.get('lat') || '51.8086928');
+        const lng = parseFloat(urlParams.get('lng') || '19.4710456');
+        const apiKey = urlParams.get('key') || '';
+
+        // Initialize Google Maps
+        function initMap() {
+            const position = { lat, lng };
+            
+            const panorama = new google.maps.StreetViewPanorama(
+                document.getElementById('map'),
+                {
+                    position: position,
+                    pov: { heading: 0, pitch: 0 },
+                    zoom: 1,
+                    enableCloseButton: false,
+                }
+            );
+            
+            console.log('Street View initialized successfully');
+        }
+    </script>
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCu7bK6zB4gP4a97vB6xQ8y7bK6zB4gP4a97vB6xQ&libraries=streetview&callback=initMap"></script>
+</body>
+</html>

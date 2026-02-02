@@ -14,6 +14,7 @@ import MapComponent from './components/map-section';
 import type { MapData, Language } from '@/types/map';
 import { RouteTable } from './components/route-table';
 import Footer from './components/footer';
+import StreetViewMinimal from './components/street-view-minimal';
 
 interface MapComponentHandle {
   seekToTime: (time: number) => void;
@@ -50,6 +51,7 @@ function App() {
   // };
 
   const handleTimeUpdate = (time: number) => {
+    console.log("App.handleTimeUpdate called with time:", time);
     if (!isMapUpdating.current) {
       isVideoUpdating.current = true;
       setCurrentTime(time);
@@ -103,6 +105,7 @@ function App() {
   // const tableRef = useRef<HTMLDivElement>(null);
   const [mapData, setMapData] = useState<MapData | null>(null);
   const videoSectionRef = useRef<HTMLDivElement>(null);
+  const [streetViewPosition, setStreetViewPosition] = useState<{ lat: number; lng: number } | null>(null);
 
   // Load frames data (unified loading)
   useEffect(() => {
@@ -188,6 +191,19 @@ function App() {
     }
   }, [currentTime]);
 
+  // Update Street View position based on current frame
+  useEffect(() => {
+    console.log("Current time changed to:", currentTime);
+    if (keyFrames.length > 0) {
+      // Find the closest frame to currentTime
+      const closestFrame = keyFrames.reduce((prev, curr) => {
+        return Math.abs(curr.time - currentTime) < Math.abs(prev.time - currentTime) ? curr : prev;
+      });
+      console.log("Street View position updated to:", closestFrame);
+      setStreetViewPosition({ lat: closestFrame.lat, lng: closestFrame.lng });
+    }
+  }, [currentTime, keyFrames]);
+
   return (
     <>
       <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
@@ -230,6 +246,36 @@ function App() {
                     </div>
                   </div>
                 </div>
+                  
+                 <div className="map-section w-full md:flex-1">
+                  <div className="h-[400px] md:h-[500px] lg:h-full bg-brown-100 dark:bg-brown-800 rounded-lg overflow-hidden relative">
+                     <StreetViewMinimal
+                       isVisible={true}
+                       onClose={() => {}}
+                       position={streetViewPosition || { lat: 51.8086928, lng: 19.4710456 }}
+                       language={language}
+                       apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY || ''}
+                     />
+                    {/* Test button to manually update Street View position */}
+                    <div className="absolute top-4 left-4 z-10">
+                      <button 
+                        className="bg-white dark:bg-gray-800 px-4 py-2 rounded-lg shadow-md text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                        onClick={() => {
+                          const testPosition = { 
+                            lat: 51.8086928 + (Math.random() - 0.5) * 0.02, 
+                            lng: 19.4710456 + (Math.random() - 0.5) * 0.02 
+                          };
+                          console.log("Test button clicked, updating position to:", testPosition);
+                          setStreetViewPosition(testPosition);
+                          // Force update of the component
+                          window.dispatchEvent(new Event('resize'));
+                        }}
+                      >
+                        Test Street View Position
+                      </button>
+                    </div>
+                  </div>
+                </div>
 
                 <div id="route-table">
                   <RouteTable
@@ -252,4 +298,5 @@ function App() {
   )
 }
 
-export default App
+export default App;
+
