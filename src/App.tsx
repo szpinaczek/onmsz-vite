@@ -35,7 +35,29 @@ interface FrameData {
   distance?: number;
   totalDistance?: number;
   speed?: number;
+  heading?: number;
 }
+
+// Calculate heading between two coordinates (in degrees)
+const calculateHeading = (from: { lat: number; lng: number }, to: { lat: number; lng: number }): number => {
+  const lat1 = (from.lat * Math.PI) / 180;
+  const lng1 = (from.lng * Math.PI) / 180;
+  const lat2 = (to.lat * Math.PI) / 180;
+  const lng2 = (to.lng * Math.PI) / 180;
+
+  const dLng = lng2 - lng1;
+
+  const y = Math.sin(dLng) * Math.cos(lat2);
+  const x = Math.cos(lat1) * Math.sin(lat2) -
+    Math.sin(lat1) * Math.cos(lat2) * Math.cos(dLng);
+  
+  let heading = (Math.atan2(y, x) * 180) / Math.PI;
+  
+  // Normalize to 0-360 degrees
+  heading = (heading + 360) % 360;
+  
+  return heading;
+};
 
 
 function App() {
@@ -105,7 +127,7 @@ function App() {
   // const tableRef = useRef<HTMLDivElement>(null);
   const [mapData, setMapData] = useState<MapData | null>(null);
   const videoSectionRef = useRef<HTMLDivElement>(null);
-  const [streetViewPosition, setStreetViewPosition] = useState<{ lat: number; lng: number } | null>(null);
+  const [streetViewPosition, setStreetViewPosition] = useState<{ lat: number; lng: number; heading?: number } | null>(null);
 
   // Load frames data (unified loading)
   useEffect(() => {
@@ -115,54 +137,58 @@ function App() {
         const response = await fetch('/frames.json');
         const data = await response.json();
 
-        if (data && data.frames) {
-          // Calculate distances and speeds between frames using Leaflet's distanceTo method
-          const framesWithDistancesAndSpeeds = data.frames.map((frame: FrameData, index: number) => {
-            if (index === 0) {
-              return { ...frame, distance: 0, totalDistance: 0, speed: 0 };
-            }
+         if (data && data.frames) {
+            // Calculate distances, speeds, and headings between frames
+            const framesWithDistancesAndSpeeds = data.frames.map((frame: FrameData, index: number) => {
+              if (index === 0) {
+                return { ...frame, distance: 0, totalDistance: 0, speed: 0, heading: 0 };
+              }
 
-            const prevFrame = data.frames[index - 1];
-            const distance = L.latLng(prevFrame.lat, prevFrame.lng)
-              .distanceTo(L.latLng(frame.lat, frame.lng));
+              const prevFrame = data.frames[index - 1];
+              const distance = L.latLng(prevFrame.lat, prevFrame.lng)
+                .distanceTo(L.latLng(frame.lat, frame.lng));
 
-            // Calculate total distance from route start
-            const totalDistance = data.frames
-              .slice(0, index + 1)
-              .reduce((sum: number, f: FrameData, i: number) => {
-                if (i === 0) return 0;
-                const prev = data.frames[i - 1];
-                return sum + L.latLng(prev.lat, prev.lng)
-                  .distanceTo(L.latLng(f.lat, f.lng));
-              }, 0);
+              // Calculate heading (direction) from previous frame to current frame
+              const heading = calculateHeading(prevFrame, frame);
 
-            // Calculate smooth progressive speed (supernatural acceleration)
-            let speed = 0;
+              // Calculate total distance from route start
+              const totalDistance = data.frames
+                .slice(0, index + 1)
+                .reduce((sum: number, f: FrameData, i: number) => {
+                  if (i === 0) return 0;
+                  const prev = data.frames[i - 1];
+                  return sum + L.latLng(prev.lat, prev.lng)
+                    .distanceTo(L.latLng(f.lat, f.lng));
+                }, 0);
 
-            if (index === 1) {
-              // Second frame: fast walking pace
-              speed = 6.5; // km/h
-            } else if (index > 1) {
-              // Smooth exponential acceleration from walking to supernatural speeds
-              const totalFrames = data.frames.length - 1; // Exclude first frame (index 0)
-              const currentFrameProgress = (index - 1) / (totalFrames - 1); // 0 to 1
+              // Calculate smooth progressive speed (supernatural acceleration)
+              let speed = 0;
 
-              const startSpeed = 6.5; // km/h (fast walking)
-              const endSpeed = 300; // km/h (supernatural final speed)
+              if (index === 1) {
+                // Second frame: fast walking pace
+                speed = 6.5; // km/h
+              } else if (index > 1) {
+                // Smooth exponential acceleration from walking to supernatural speeds
+                const totalFrames = data.frames.length - 1; // Exclude first frame (index 0)
+                const currentFrameProgress = (index - 1) / (totalFrames - 1); // 0 to 1
 
-              // Exponential curve for realistic acceleration feeling
-              // Using power of 1.8 for smooth but noticeable acceleration
-              const accelerationCurve = Math.pow(currentFrameProgress, 1.8);
-              speed = startSpeed + (endSpeed - startSpeed) * accelerationCurve;
-            }
+                const startSpeed = 6.5; // km/h (fast walking)
+                const endSpeed = 300; // km/h (supernatural final speed)
 
-            return {
-              ...frame,
-              distance: Math.round(distance),
-              totalDistance: Math.round(totalDistance),
-              speed: Math.round(speed * 10) / 10 // Round to 1 decimal place
-            };
-          });
+                // Exponential curve for realistic acceleration feeling
+                // Using power of 1.8 for smooth but noticeable acceleration
+                const accelerationCurve = Math.pow(currentFrameProgress, 1.8);
+                speed = startSpeed + (endSpeed - startSpeed) * accelerationCurve;
+              }
+
+              return {
+                ...frame,
+                distance: Math.round(distance),
+                totalDistance: Math.round(totalDistance),
+                speed: Math.round(speed * 10) / 10, // Round to 1 decimal place
+                heading: heading
+              };
+            });
 
           // Set both keyFrames and mapData from the same source
           setKeyFrames(framesWithDistancesAndSpeeds);
@@ -200,7 +226,11 @@ function App() {
         return Math.abs(curr.time - currentTime) < Math.abs(prev.time - currentTime) ? curr : prev;
       });
       console.log("Street View position updated to:", closestFrame);
-      setStreetViewPosition({ lat: closestFrame.lat, lng: closestFrame.lng });
+      setStreetViewPosition({ 
+        lat: closestFrame.lat, 
+        lng: closestFrame.lng, 
+        heading: closestFrame.heading 
+      });
     }
   }, [currentTime, keyFrames]);
 
@@ -249,13 +279,14 @@ function App() {
                   
                  <div className="map-section w-full md:flex-1">
                   <div className="h-[400px] md:h-[500px] lg:h-full bg-brown-100 dark:bg-brown-800 rounded-lg overflow-hidden relative">
-                     <StreetViewMinimal
-                       isVisible={true}
-                       onClose={() => {}}
-                       position={streetViewPosition || { lat: 51.8086928, lng: 19.4710456 }}
-                       language={language}
-                       apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY || ''}
-                     />
+                      <StreetViewMinimal
+                        isVisible={true}
+                        onClose={() => {}}
+                        position={streetViewPosition || { lat: 51.8086928, lng: 19.4710456 }}
+                        heading={streetViewPosition?.heading}
+                        language={language}
+                        apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY || ''}
+                      />
                     {/* Test button to manually update Street View position */}
                     <div className="absolute top-4 left-4 z-10">
                       <button 

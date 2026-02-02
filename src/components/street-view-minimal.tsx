@@ -11,6 +11,7 @@ interface StreetViewMinimalProps {
   position: { lat: number; lng: number };
   language: Language;
   apiKey: string;
+  heading?: number;
 }
 
 const StreetViewMinimal: React.FC<StreetViewMinimalProps> = ({
@@ -18,16 +19,18 @@ const StreetViewMinimal: React.FC<StreetViewMinimalProps> = ({
   onClose,
   position,
   language,
-  apiKey
+  apiKey,
+  heading
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const panoramaRef = useRef<google.maps.StreetViewPanorama | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   
   const { isLoaded, loadError } = useGoogleMaps(apiKey);
 
   useEffect(() => {
-    console.log("StreetViewMinimal effect", { isVisible, position, isLoaded, loadError });
+    console.log("StreetViewMinimal effect", { isVisible, position, heading, isLoaded, loadError });
     
     if (!isVisible || !position || !isLoaded || !containerRef.current) {
       return;
@@ -41,23 +44,30 @@ const StreetViewMinimal: React.FC<StreetViewMinimalProps> = ({
       containerRef.current.style.width = '100%';
       containerRef.current.style.height = '100%';
 
-      // Initialize Street View
-      const panorama = new window.google.maps.StreetViewPanorama(
-        containerRef.current,
-        {
-          position,
-          pov: { heading: 0, pitch: 0 },
-          zoom: 1,
-          enableCloseButton: false,
-          addressControl: false,
-          linksControl: false,
-          panControl: false,
-          zoomControl: false,
-          fullscreenControl: false
+      if (!panoramaRef.current) {
+        // Initialize Street View
+        panoramaRef.current = new window.google.maps.StreetViewPanorama(
+          containerRef.current,
+          {
+            position,
+            pov: { heading: heading || 0, pitch: 0 },
+            zoom: 1,
+            enableCloseButton: false,
+            addressControl: false,
+            linksControl: false,
+            panControl: false,
+            zoomControl: false,
+            fullscreenControl: false
+          }
+        );
+      } else {
+        // Update existing panorama
+        panoramaRef.current.setPosition(position);
+        if (heading !== undefined) {
+          panoramaRef.current.setPov({ heading, pitch: 0 });
         }
-      );
+      }
 
-      panorama.setVisible(true);
       setLoading(false);
       console.log("Street View initialized successfully");
     } catch (err) {
@@ -66,7 +76,7 @@ const StreetViewMinimal: React.FC<StreetViewMinimalProps> = ({
       setLoading(false);
     }
 
-  }, [isVisible, position, language, isLoaded, loadError]);
+  }, [isVisible, position, heading, language, isLoaded, loadError]);
 
   if (!isVisible) return null;
 

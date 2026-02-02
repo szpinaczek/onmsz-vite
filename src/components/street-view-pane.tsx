@@ -11,6 +11,7 @@ interface StreetViewPaneProps {
   position: { lat: number; lng: number };
   language: Language;
   apiKey: string;
+  heading?: number;
 }
 
 const StreetViewPane: React.FC<StreetViewPaneProps> = ({
@@ -18,7 +19,8 @@ const StreetViewPane: React.FC<StreetViewPaneProps> = ({
   onClose,
   position,
   language,
-  apiKey
+  apiKey,
+  heading
 }) => {
   const panoramaRef = useRef<HTMLDivElement>(null);
   const panoramaInstanceRef = useRef<google.maps.StreetViewPanorama | null>(null);
@@ -40,7 +42,7 @@ const StreetViewPane: React.FC<StreetViewPaneProps> = ({
         panoramaRef.current,
         {
           position: position,
-          pov: { heading: 0, pitch: 0 },
+          pov: { heading: heading || 0, pitch: 0 },
           zoom: 1,
           enableCloseButton: false,
           addressControl: true,
@@ -53,14 +55,16 @@ const StreetViewPane: React.FC<StreetViewPaneProps> = ({
     } else {
       // Update existing panorama
       panoramaInstanceRef.current.setPosition(position);
-      panoramaInstanceRef.current.setPov({ heading: 0, pitch: 0 });
+      if (heading !== undefined) {
+        panoramaInstanceRef.current.setPov({ heading, pitch: 0 });
+      }
       panoramaInstanceRef.current.setZoom(1);
     }
 
     // panoramaInstanceRef.current.setVisible(true);
     setIsLoading(false);
 
-  }, [isVisible, position, language, isLoaded]);
+  }, [isVisible, position, heading, language, isLoaded]);
 
   const handleResetView = () => {
     if (panoramaInstanceRef.current) {
