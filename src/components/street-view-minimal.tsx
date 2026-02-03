@@ -81,9 +81,9 @@ const StreetViewMinimal: React.FC<StreetViewMinimalProps> = ({
   if (!isVisible) return null;
 
   return (
-    <div className="flex flex-col h-full bg-white dark:bg-gray-900 border-l border-gray-200 dark:border-gray-700">
-      <div className="flex items-center justify-between p-3 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
-        <h3 className="text-sm font-medium text-gray-900 dark:text-gray-100">
+    <div className="flex flex-col h-full bg-white dark:bg-brown-900 border-l border-brown-200 dark:border-brown-700">
+      {/* <div className="flex items-center justify-between p-3 border-b border-brown-200 dark:border-brown-700 bg-brown-50 dark:bg-brown-800">
+        <h3 className="text-sm font-medium text-brown-900 dark:text-brown-100">
           {getTranslation('streetView', language)}
         </h3>
         <Button
@@ -95,14 +95,14 @@ const StreetViewMinimal: React.FC<StreetViewMinimalProps> = ({
         >
           <X className="h-4 w-4" />
         </Button>
-      </div>
+      </div> */}
 
       <div className="flex-1 relative">
         {loading && (
-          <div className="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-800 z-10">
+          <div className="absolute inset-0 flex items-center justify-center bg-brown-100 dark:bg-brown-800 z-10">
             <div className="text-center">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto mb-2"></div>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-brown-50 mx-auto mb-2"></div>
+              <p className="text-sm text-brown-600 dark:text-brown-400">
                 {getTranslation('loadingStreetView', language)}
               </p>
             </div>
@@ -110,19 +110,19 @@ const StreetViewMinimal: React.FC<StreetViewMinimalProps> = ({
         )}
 
         {error && (
-          <div className="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-800 z-10">
+          <div className="absolute inset-0 flex items-center justify-center bg-brown-100 dark:bg-brown-800 z-10">
             <div className="text-center">
               <div className="text-4xl mb-2">📍</div>
-              <p className="text-sm text-gray-600 dark:text-gray-400">{error}</p>
+              <p className="text-sm text-brown-600 dark:text-brown-400">{error}</p>
             </div>
           </div>
         )}
 
         {loadError && (
-          <div className="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-800 z-10">
+          <div className="absolute inset-0 flex items-center justify-center bg-brown-100 dark:bg-brown-800 z-10">
             <div className="text-center">
               <div className="text-4xl mb-2">❌</div>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+              <p className="text-sm text-brown-600 dark:text-brown-400">
                 {loadError.message}
               </p>
             </div>

@@ -249,7 +249,7 @@ function App() {
                   <AboutSection language={language} />
                 </div>
 
-                <div className="flex flex-col md:flex-row gap-6">
+                <div className="flex flex-col md:flex-row gap-6 mb-4">
                   {/* Video section */}
                   <div className="video-section w-full lg:w-2/3 scroll-mt-24" id="video" ref={videoSectionRef}>
                     <div className="max-w-[1280px] mx-auto">
@@ -288,7 +288,7 @@ function App() {
                         apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY || ''}
                       />
                     {/* Test button to manually update Street View position */}
-                    <div className="absolute top-4 left-4 z-10">
+                    {/* <div className="absolute top-4 left-4 z-10">
                       <button 
                         className="bg-white dark:bg-gray-800 px-4 py-2 rounded-lg shadow-md text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                         onClick={() => {
@@ -304,7 +304,7 @@ function App() {
                       >
                         Test Street View Position
                       </button>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
 
