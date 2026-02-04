@@ -1,26 +1,34 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { X } from 'lucide-react';
 import { getTranslation } from './i18n/translations';
 import type { Language } from '@/types/map';
 import { useGoogleMaps } from '@/hooks/useGoogleMaps';
 
 interface StreetViewMinimalProps {
   isVisible: boolean;
-  onClose: () => void;
+  onClose?: () => void;
   position: { lat: number; lng: number };
   language: Language;
   apiKey: string;
   heading?: number;
+  // Manual panorama props
+  manualPanorama?: {
+    type: 'default' | 'panoId' | 'customImage';
+    panoId?: string;
+    customImage?: string;
+    heading?: number;
+    pitch?: number;
+    zoom?: number;
+  };
 }
 
 const StreetViewMinimal: React.FC<StreetViewMinimalProps> = ({
   isVisible,
-  onClose,
+  // onClose, // Unused currently
   position,
   language,
   apiKey,
-  heading
+  heading,
+  manualPanorama
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const panoramaRef = useRef<google.maps.StreetViewPanorama | null>(null);
@@ -30,9 +38,9 @@ const StreetViewMinimal: React.FC<StreetViewMinimalProps> = ({
   const { isLoaded, loadError } = useGoogleMaps(apiKey);
 
   useEffect(() => {
-    console.log("StreetViewMinimal effect", { isVisible, position, heading, isLoaded, loadError });
+    console.log("StreetViewMinimal effect", { isVisible, position, heading, isLoaded, loadError, manualPanorama });
     
-    if (!isVisible || !position || !isLoaded || !containerRef.current) {
+    if (!isVisible || !containerRef.current) {
       return;
     }
 
@@ -44,28 +52,104 @@ const StreetViewMinimal: React.FC<StreetViewMinimalProps> = ({
       containerRef.current.style.width = '100%';
       containerRef.current.style.height = '100%';
 
+      // If manual panorama is provided, use it
+      if (manualPanorama) {
+        if (manualPanorama.type === 'customImage' && manualPanorama.customImage) {
+          // Display custom 360 image
+          if (panoramaRef.current) {
+            containerRef.current.innerHTML = '';
+            panoramaRef.current = null;
+          }
+          containerRef.current.innerHTML = `
+            <div style="width: 100%; height: 100%; background: url('${manualPanorama.customImage}') center/cover; display: flex; align-items: center; justify-content: center;">
+              <div style="background: rgba(255, 255, 255, 0.9); padding: 10px 20px; border-radius: 8px; text-align: center;">
+                <div style="font-weight: bold; margin-bottom: 5px;">${getTranslation('customPanorama', language)}</div>
+                <div style="font-size: 12px;">${getTranslation('customPanoramaDescription', language)}</div>
+              </div>
+            </div>
+          `;
+          setLoading(false);
+          console.log("Custom panorama displayed successfully");
+          return;
+        } else if (manualPanorama.type === 'panoId' && manualPanorama.panoId) {
+          // Use custom Google Street View panorama
+          if (!isLoaded) {
+            setLoading(false);
+            return;
+          }
+          
+          if (!panoramaRef.current) {
+            // Initialize Street View with custom panorama
+            const options: any = {
+              pano: manualPanorama.panoId,
+              enableCloseButton: false,
+              addressControl: false,
+              linksControl: false,
+              panControl: false,
+              zoomControl: false,
+              fullscreenControl: false
+            };
+            
+            options.pov = { 
+              heading: manualPanorama.heading || heading || 0, 
+              pitch: manualPanorama.pitch || 0 
+            };
+            if (manualPanorama.zoom) {
+              options.zoom = manualPanorama.zoom;
+            }
+
+            panoramaRef.current = new window.google.maps.StreetViewPanorama(
+              containerRef.current,
+              options
+            );
+          } else {
+            // Update existing panorama
+            (panoramaRef.current as any).setPano(manualPanorama.panoId);
+            const pov: any = { 
+              heading: manualPanorama.heading || heading || 0, 
+              pitch: manualPanorama.pitch || 0 
+            };
+            if (manualPanorama.zoom) {
+              pov.zoom = manualPanorama.zoom;
+            }
+            panoramaRef.current.setPov(pov);
+          }
+          setLoading(false);
+          console.log("Custom Google Street View panorama displayed successfully");
+          return;
+        }
+      }
+
+      // Otherwise, use default behavior (regular Google Street View)
+      if (!isLoaded) {
+        setLoading(false);
+        return;
+      }
+
       if (!panoramaRef.current) {
         // Initialize Street View
+        const options: any = {
+          position,
+          enableCloseButton: false,
+          addressControl: false,
+          linksControl: false,
+          panControl: false,
+          zoomControl: false,
+          fullscreenControl: false
+        };
+        
+        options.pov = { heading: heading || 0, pitch: 0 };
+
         panoramaRef.current = new window.google.maps.StreetViewPanorama(
           containerRef.current,
-          {
-            position,
-            pov: { heading: heading || 0, pitch: 0 },
-            zoom: 1,
-            enableCloseButton: false,
-            addressControl: false,
-            linksControl: false,
-            panControl: false,
-            zoomControl: false,
-            fullscreenControl: false
-          }
+          options
         );
       } else {
         // Update existing panorama
         panoramaRef.current.setPosition(position);
-        if (heading !== undefined) {
-          panoramaRef.current.setPov({ heading, pitch: 0 });
-        }
+        
+        const pov: any = { heading: heading || 0, pitch: 0 };
+        panoramaRef.current.setPov(pov);
       }
 
       setLoading(false);
@@ -76,7 +160,7 @@ const StreetViewMinimal: React.FC<StreetViewMinimalProps> = ({
       setLoading(false);
     }
 
-  }, [isVisible, position, heading, language, isLoaded, loadError]);
+  }, [isVisible, position, heading, language, isLoaded, loadError, manualPanorama]);
 
   if (!isVisible) return null;
 

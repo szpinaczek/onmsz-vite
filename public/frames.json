@@ -11,6 +11,12 @@
       "info": {
         "pl": "Zaczynamy w brzozowym lasku w dzielnicy Arturówek. Na widocznym w oddali nasypie kolejowym obecnie znajduje się przystanek Łódź Warszawska.",
         "en": "We start in a birch grove in the Arturówek district. On the railway embankment visible in the distance, there is currently the Łódź Warszawska stop."
+      },
+      "manualPanorama": {
+        "type": "panoId",
+        "panoId": "9nXbRoEDdIP_Nra2T9UD2g",
+        "heading": 231.44,
+        "pitch": -4.23
       }
     },
     {
@@ -20,7 +26,8 @@
       "description": {
         "pl": "ul. Perlicza",
         "en": "Perlicza Street"
-      }
+      },
+      "customImage": "https://picsum.photos/800/400?random=1"
     },
     {
       "time": 129,
@@ -267,6 +274,16 @@
       "description": {
         "pl": "Stadion KS 'Budowlani'",
         "en": "KS 'Budowlani' Stadium"
+      },
+      "info": {
+        "pl": "Stadion rugby KS 'Budowlani'",
+        "en": "KS 'Budowlani' Rugby Stadium"
+      },
+      "manualPanorama": {
+        "type": "panoId",
+        "panoId": "XNrv333UtHGJ-zXMCKq9Vw",
+        "heading": 203.299,
+        "pitch": -1.8440
       }
     },
     {

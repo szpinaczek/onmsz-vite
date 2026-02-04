@@ -36,6 +36,14 @@ interface FrameData {
   totalDistance?: number;
   speed?: number;
   heading?: number;
+  manualPanorama?: {
+    type: 'default' | 'panoId' | 'customImage';
+    panoId?: string;
+    customImage?: string;
+    heading?: number;
+    pitch?: number;
+    zoom?: number;
+  };
 }
 
 // Calculate heading between two coordinates (in degrees)
@@ -127,7 +135,19 @@ function App() {
   // const tableRef = useRef<HTMLDivElement>(null);
   const [mapData, setMapData] = useState<MapData | null>(null);
   const videoSectionRef = useRef<HTMLDivElement>(null);
-  const [streetViewPosition, setStreetViewPosition] = useState<{ lat: number; lng: number; heading?: number } | null>(null);
+  const [streetViewPosition, setStreetViewPosition] = useState<{ 
+    lat: number; 
+    lng: number; 
+    heading?: number;
+    manualPanorama?: {
+      type: 'default' | 'panoId' | 'customImage';
+      panoId?: string;
+      customImage?: string;
+      heading?: number;
+      pitch?: number;
+      zoom?: number;
+    };
+  } | null>(null);
 
   // Load frames data (unified loading)
   useEffect(() => {
@@ -229,7 +249,8 @@ function App() {
       setStreetViewPosition({ 
         lat: closestFrame.lat, 
         lng: closestFrame.lng, 
-        heading: closestFrame.heading 
+        heading: closestFrame.heading,
+        manualPanorama: closestFrame.manualPanorama
       });
     }
   }, [currentTime, keyFrames]);
@@ -286,6 +307,7 @@ function App() {
                         heading={streetViewPosition?.heading}
                         language={language}
                         apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY || ''}
+                        manualPanorama={streetViewPosition?.manualPanorama}
                       />
                     {/* Test button to manually update Street View position */}
                     {/* <div className="absolute top-4 left-4 z-10">

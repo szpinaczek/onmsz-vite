@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Street View URL Parser</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            display: none;
+        }
+        .result.show {
+            display: block;
+        }
+        .result h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        .result pre {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        .error {
+            color: #dc3545;
+            margin-top: 10px;
+        }
+        .console-info {
+            background-color: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .console-info h3 {
+            margin-top: 0;
+            color: #1565C0;
+        }
+        .console-info code {
+            background-color: #fff;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Google Street View URL Parser</h1>
+        
+        <div class="console-info">
+            <h3>Using in Browser Console</h3>
+            <p>You can also use this parser directly in your browser console:</p>
+            <p><code>parseStreetViewURL('YOUR_URL_HERE')</code></p>
+            <p>Example:</p>
+            <code><pre>parseStreetViewURL('https://www.google.com/maps/@51.8114178,19.4684854,3a,75y,231.44h,97.65t/data=!3m7!1e1!3m5!1s9nXbRoEDdIP_Nra2T9UD2g!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D-7.653027784829149%26panoid%3D9nXbRoEDdIP_Nra2T9UD2g%26yaw%3D231.43853022351698!7i13312!8i6656?entry=ttu')</pre></code>
+        </div>
+
+        <div class="input-group">
+            <label for="streetviewUrl">Enter Google Street View URL:</label>
+            <input type="text" id="streetviewUrl" placeholder="Paste URL here..." onkeypress="if(event.key==='Enter')parseURL()">
+        </div>
+        
+        <button onclick="parseURL()">Extract Parameters</button>
+        
+        <div id="error" class="error"></div>
+        
+        <div id="result" class="result">
+            <h3>Extracted Parameters:</h3>
+            <pre id="paramsJson"></pre>
+        </div>
+    </div>
+
+    <script>
+        function extractStreetViewParams(url) {
+            try {
+                const idMatch = url.match(/!1s([^!]+)/);
+                if (!idMatch) return null;
+                const id = idMatch[1];
+
+                const thumbnailMatch = url.match(/pitch%3D([-+]?\d*\.?\d+)%26panoid%3D[^%]+%26yaw%3D([-+]?\d*\.?\d+)/);
+                if (!thumbnailMatch) return null;
+                const pitch = parseFloat(thumbnailMatch[1]);
+                const heading = parseFloat(thumbnailMatch[2]);
+
+                const coordsMatch = url.match(/@([-+]?\d*\.?\d+),([-+]?\d*\.?\d+)/);
+                if (!coordsMatch) return null;
+                const lat = parseFloat(coordsMatch[1]);
+                const lng = parseFloat(coordsMatch[2]);
+
+                return { id, pitch, heading, lat, lng };
+            } catch (error) {
+                console.error('Error extracting Street View parameters:', error);
+                return null;
+            }
+        }
+
+        function parseURL() {
+            const url = document.getElementById('streetviewUrl').value;
+            const errorDiv = document.getElementById('error');
+            const resultDiv = document.getElementById('result');
+            const paramsJson = document.getElementById('paramsJson');
+
+            errorDiv.textContent = '';
+            resultDiv.classList.remove('show');
+
+            if (!url.trim()) {
+                errorDiv.textContent = 'Please enter a valid URL';
+                return;
+            }
+
+            const params = extractStreetViewParams(url);
+            if (params) {
+                paramsJson.textContent = JSON.stringify(params, null, 2);
+                resultDiv.classList.add('show');
+            } else {
+                errorDiv.textContent = 'Failed to extract parameters from the URL. Please make sure you entered a valid Google Street View URL.';
+            }
+        }
+
+        // Make available globally for console use
+        window.parseStreetViewURL = extractStreetViewParams;
+    </script>
+</body>
+</html>

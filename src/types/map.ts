@@ -15,6 +15,12 @@ export interface Frame {
   distance?: number;
   totalDistance?: number;
   speed?: number;
+  // Manual panorama fields
+  panoId?: string;       // Custom Google Street View panorama ID
+  heading?: number;      // Custom heading (0-360 degrees)
+  pitch?: number;        // Custom pitch (-90 to 90 degrees)
+  zoom?: number;         // Custom zoom level
+  customImage?: string;  // URL to custom spherical/360 image
 }
 
 export interface MapData {
