@@ -810,7 +810,7 @@
     },
     {
       "time": 485,
-      "lat": 51.76755,
+      "lat": 51.7673859,
       "lng": 19.4554,
       "description": {
         "pl": "Pasaż Rubinsteina, fontanna",
@@ -818,13 +818,17 @@
       }
     },
     {
-      "time": 487,
+      "time": 486,
       "lat": 51.76732,
-      "lng": 19.45417,
+      "lng": 19.4544247,
       "description": {
         "pl": "Pasaż Rubinsteina/al. Kościuszki",
         "en": "Rubinstein Passage/Kościuszki Avenue"
-      }
+      },
+      "info": {
+        "pl": "Rzeźba Joanny Solskiej pod tytułem 'Fontanna'. Dziś rzeźba znajduje się w Parku Klepacza.",
+        "en": "Sculpture by Joanna Solska titled 'Fountain'. Today the sculpture is located in the Bishop Klepacz Park."
+    }
     },
     {
       "time": 488,
@@ -851,6 +855,16 @@
       "description": {
         "pl": "al. Kościuszki, zakłady Lido",
         "en": "Kościuszki Avenue, Lido factory"
+      },
+      "info": {
+        "pl": "Dawne Zakłady Przemysłu Dziewiarskiego LIDO",
+        "en": "Former LIDO Knitting Industry Plant"
+      },
+      "manualPanorama": {
+        "type": "panoId",
+        "panoId": "CIHM0ogKEICAgID4yo72nQE",
+        "heading": 141.352,
+        "pitch": 10.057
       }
     },
     {
@@ -887,6 +901,10 @@
       "description": {
         "pl": "ul. Żeromskiego, zbór Braci Morawskich",
         "en": "Żeromskiego Street, Moravian Brethren Church"
+      },
+      "info": {
+        "pl": "Zbór braci morawskich w Łodzi",
+        "en": "Church of the Moravian Brethren in Łódź"
       }
     },
     {
@@ -1085,6 +1103,10 @@
       "description": {
         "pl": "Cmentarz Stary, mauzoleum Heinzlów",
         "en": "Old Cemetery, Heinzl Mausoleum"
+      },
+      "info": {
+        "pl": "Mauzoleum rodziny Heinzlów na Starym Cmentarzu w Łodzi.",
+        "en": "Mausoleum of the Heinzel family at the Old Cemetery in Łódź."
       }
     },
     {
@@ -1313,7 +1335,7 @@
     [51.76809, 19.45723],
     [51.76786, 19.45649],
     [51.76755, 19.4554],
-    [51.76732, 19.45417],
+    [51.76732, 19.4544247],
     [51.7671166, 19.4537566],
     [51.7670287, 19.4528232],
     [51.76678, 19.45287],

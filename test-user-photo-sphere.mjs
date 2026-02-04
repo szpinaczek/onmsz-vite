@@ -101,80 +101,26 @@ function extractStreetViewParams(url) {
     }
 }
 
-// Usage examples
-async function main() {
-    const readline = (await import('readline')).createInterface({
-        input: process.stdin,
-        output: process.stdout
-    });
+// Test with user-contributed photo sphere URL
+const url = 'https://www.google.com/maps/@51.7670408,19.452748,3a,75y,176.35h,100.06t/data=!3m8!1e1!3m6!1sCIHM0ogKEICAgID4yo72nQE!2e10!3e11!6shttps:%2F%2Flh3.googleusercontent.com%2Fgpms-cs-s%2FAFfmt2ZEx6yUF86uxnUAxhfry0DirdktlM9DKk5cSCl78xluX7cquq6-Wzm-gX1LuN8B3u7vVcZJMHhEDrydhwO__l_tSDnXmApwbawQXgM_sVTgZFpXZYv-2MgTmeFV2y6CbEJcJv_p%3Dw900-h600-k-no-pi-10.05783810023732-ya141.3523286902394-ro0-fo100!7i13312!8i6656?entry=ttu&g_ep=EgoyMDI2MDIwMS4wIKXMDSoASAFQAw%3D%3D';
 
-    if (process.argv.length > 2) {
-        // If URL is provided as command line argument
-        const url = process.argv[2];
-        const params = extractStreetViewParams(url);
-            if (params) {
-            console.log('=== Google Street View URL Parser ===');
-            console.log('');
-            console.log('Extracted parameters:');
-            console.log('ID:', params.id);
-            console.log('Pitch:', params.pitch);
-            console.log('Heading:', params.heading);
-            console.log('Latitude:', params.lat);
-            console.log('Longitude:', params.lng);
-            if (params.fov !== undefined) console.log('FOV:', params.fov);
-            if (params.zoom !== undefined) console.log('Zoom:', params.zoom.toFixed(3));
-            if (params.imageWidth !== undefined) console.log('Image Width:', params.imageWidth);
-            if (params.imageHeight !== undefined) console.log('Image Height:', params.imageHeight);
-            console.log('');
-            console.log('JSON format:');
-            console.log(JSON.stringify(params, null, 2));
-        } else {
-            console.error('Failed to extract parameters from the URL. Please make sure you entered a valid Google Street View URL.');
-        }
-        readline.close();
-    } else {
-        // Interactive mode
-        console.log('=== Google Street View URL Parser ===');
-        console.log('Enter a Google Maps Street View URL (or type "exit" to quit):');
-        
-        readline.on('line', (input) => {
-            if (input.toLowerCase() === 'exit') {
-                readline.close();
-                return;
-            }
+const params = extractStreetViewParams(url);
 
-            if (input.trim()) {
-                const params = extractStreetViewParams(input.trim());
-                if (params) {
-                    console.log('\nSuccessfully extracted parameters:');
-                    console.log('ID:', params.id);
-                    console.log('Pitch:', params.pitch);
-                    console.log('Heading:', params.heading);
-                    console.log('Latitude:', params.lat);
-                    console.log('Longitude:', params.lng);
-                    if (params.fov !== undefined) console.log('FOV:', params.fov);
-                    if (params.zoom !== undefined) console.log('Zoom:', params.zoom.toFixed(3));
-                    if (params.imageWidth !== undefined) console.log('Image Width:', params.imageWidth);
-                    if (params.imageHeight !== undefined) console.log('Image Height:', params.imageHeight);
-                    console.log('');
-                    console.log('JSON format:');
-                    console.log(JSON.stringify(params, null, 2));
-                } else {
-                    console.log('\nFailed to extract parameters from the URL.');
-                    console.log('Please make sure you entered a valid Google Street View URL.');
-                }
-            }
-
-            console.log('\nEnter a Google Maps Street View URL (or type "exit" to quit):');
-        });
-
-        readline.on('close', () => {
-            console.log('\nParser exited.');
-        });
-    }
+console.log('=== User-Contributed Photo Sphere Test ===');
+if (params) {
+    console.log('Successfully extracted parameters:');
+    console.log('ID:', params.id);
+    console.log('Pitch:', params.pitch);
+    console.log('Heading:', params.heading);
+    console.log('Latitude:', params.lat);
+    console.log('Longitude:', params.lng);
+    if (params.fov !== undefined) console.log('FOV:', params.fov);
+    if (params.zoom !== undefined) console.log('Zoom:', params.zoom.toFixed(3));
+    if (params.imageWidth !== undefined) console.log('Image Width:', params.imageWidth);
+    if (params.imageHeight !== undefined) console.log('Image Height:', params.imageHeight);
+    console.log('');
+    console.log('JSON format:');
+    console.log(JSON.stringify(params, null, 2));
+} else {
+    console.log('Failed to extract parameters from the URL');
 }
-
-// Run the main function
-main();
-
-export { extractStreetViewParams };

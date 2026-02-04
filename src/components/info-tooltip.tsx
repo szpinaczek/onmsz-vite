@@ -153,7 +153,7 @@ const InfoTooltip: React.FC<InfoTooltipProps> = ({
         onClick={() => onToggleVisibility(true)}
         title={getTranslation('additionalInfo', language)}
       >
-        <Info className="h-8 w-8" />
+        <Info className="h-[12px] w-[12px]" />
       </Button>
     );
   }
