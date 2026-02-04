@@ -383,6 +383,12 @@
       "description": {
         "pl": "ul. Pasterska",
         "en": "Pasterska Street"
+      },
+      "manualPanorama": {
+        "type": "panoId",
+        "panoId": "tgrgEWut5otdwS0v_kV2vQ",
+        "heading": 237.348,
+        "pitch": -8.505
       }
     },
     {
@@ -617,6 +623,10 @@
       "description": {
         "pl": "Teatr im. Stefana Jaracza",
         "en": "Stefan Jaracz Theatre"
+      },
+      "info": {
+        "pl": "Teatr im. Stefana Jaracza. Na scenie widzimy dekoracje do spektaklu 'Szaleństwa panny Ewy' w reżyserii Waldemera Wilhelma. Premiera spektaklu odbyła się 7 grudnia 1974 roku",
+        "en": "The Stefan Jaracz Theatre. On stage, we can see the set design for the play 'The Follies of Miss Eva' (Szaleństwa panny Ewy), directed by Waldemar Wilhelm. The play premiered on December 7, 1974."
       }
     },
     {
@@ -698,6 +708,10 @@
       "description": {
         "pl": "ul. Kilińskiego, przejście podziemne",
         "en": "Kilińskiego Street, underground passage"
+      },
+      "info": {
+        "pl": "Pierwsze w Łodzi przejście podziemne przy dworcu Łódź Fabryczna otwarto w 1973 roku. Przejście zostało zlikwidowane w 2014 roku.",
+        "en": "The first underground passage in Łódź, near the Łódź Fabryczna station, opened in 1973 and was removed in 2014."
       }
     },
     {
@@ -714,9 +728,14 @@
       "lat": 51.76898,
       "lng": 19.46266,
       "description": {
-        "pl": "ul. Traugutta, pawilon Chemii",
-        "en": "Traugutta Street, Chemistry Pavilion"
+        "pl": "ul. Traugutta, pawilon 'Chemia'",
+        "en": "Traugutta Street, chemical goods store"
+      },
+      "info": {
+        "pl": "Pawilon z artykułami chemicznymi przedsiębiostwa 'Chemia' spłonął 12 grudnia 1989 roku. Do dzisiaj w tym miejscu znajduje sie pusty plac.",
+        "en": "The pavilion with chemical products of the 'Chemia' company burned down on December 12, 1989. To this day, there is an empty square in this place."
       }
+
     },
     {
       "time": 476,
@@ -743,6 +762,10 @@
       "description": {
         "pl": "ul. Moniuszki",
         "en": "Moniuszki Street"
+      },
+      "info": {
+        "pl": "Ulica Stanisława Moniuszki powstała jako prywatny Pasaż Meyera w latach 80. XIX wieku. Jest zabudowana luksusuowymi willami i otoczonymi ogrodami pałacami.",
+        "en": "Stanisław Moniuszko Street was built as a private Meyer Passage in the 1880s. It is built with luxurious villas and palaces surrounded by gardens."
       }
     },
     {
@@ -779,7 +802,11 @@
       "description": {
         "pl": "ul. Piotrkowska/ul. Pasaż Rubinsteina",
         "en": "Piotrkowska Street/Rubinstein Passage"
-      }
+      },
+      "info": {
+        "pl": "Łódzka Galeria Rzeźby powstała z inicjatywy łódzkiego rzeźbiarza Michała Gałkiewicza w 1974 roku. Plenerowa Galeria przez kilka lat przezentowała wiele dzieł, z których około 20. wciąż mozna znaleźć na łódzkich ulicach i w parkach.",
+        "en": "The Łódź Sculpture Gallery was established on the initiative of the Łódź sculptor Michał Gałkiewicz in 1974. For several years, the Open-air Gallery presented many works, about 20 of which can still be found on the streets and parks of Łódź."
+    }
     },
     {
       "time": 485,
