@@ -14,7 +14,35 @@ function extractStreetViewParams(url) {
         const lat = parseFloat(coordsMatch[1]);
         const lng = parseFloat(coordsMatch[2]);
 
-        return { id, pitch, heading, lat, lng };
+        // Extract field of view (FOV) - look for patterns like 75y
+        const fovMatch = url.match(/@[^,]+,[^,]+,[^,]+,([\d.]+)y/);
+        let fov;
+        let zoom;
+        if (fovMatch) {
+            fov = parseFloat(fovMatch[1]);
+            // Convert FOV to zoom (0-1, where 0 is most zoomed out, 1 is most zoomed in)
+            const minFov = 10;
+            const maxFov = 120;
+            zoom = Math.max(0, Math.min(1, 1 - (fov - minFov) / (maxFov - minFov)));
+        }
+
+        // Extract image dimensions
+        const widthMatch = url.match(/!7i(\d+)/);
+        const heightMatch = url.match(/!8i(\d+)/);
+        const imageWidth = widthMatch ? parseInt(widthMatch[1]) : undefined;
+        const imageHeight = heightMatch ? parseInt(heightMatch[1]) : undefined;
+
+        return {
+            id,
+            pitch,
+            heading,
+            lat,
+            lng,
+            fov,
+            zoom,
+            imageWidth,
+            imageHeight
+        };
     } catch (error) {
         console.error('Error extracting Street View parameters:', error);
         return null;
@@ -32,7 +60,7 @@ async function main() {
         // If URL is provided as command line argument
         const url = process.argv[2];
         const params = extractStreetViewParams(url);
-        if (params) {
+            if (params) {
             console.log('=== Google Street View URL Parser ===');
             console.log('');
             console.log('Extracted parameters:');
@@ -41,6 +69,10 @@ async function main() {
             console.log('Heading:', params.heading);
             console.log('Latitude:', params.lat);
             console.log('Longitude:', params.lng);
+            if (params.fov !== undefined) console.log('FOV:', params.fov);
+            if (params.zoom !== undefined) console.log('Zoom:', params.zoom.toFixed(3));
+            if (params.imageWidth !== undefined) console.log('Image Width:', params.imageWidth);
+            if (params.imageHeight !== undefined) console.log('Image Height:', params.imageHeight);
             console.log('');
             console.log('JSON format:');
             console.log(JSON.stringify(params, null, 2));
@@ -68,6 +100,10 @@ async function main() {
                     console.log('Heading:', params.heading);
                     console.log('Latitude:', params.lat);
                     console.log('Longitude:', params.lng);
+                    if (params.fov !== undefined) console.log('FOV:', params.fov);
+                    if (params.zoom !== undefined) console.log('Zoom:', params.zoom.toFixed(3));
+                    if (params.imageWidth !== undefined) console.log('Image Width:', params.imageWidth);
+                    if (params.imageHeight !== undefined) console.log('Image Height:', params.imageHeight);
                     console.log('');
                     console.log('JSON format:');
                     console.log(JSON.stringify(params, null, 2));

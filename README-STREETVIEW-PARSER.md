@@ -5,6 +5,8 @@ A simple tool to extract parameters from Google Street View URLs, including:
 - Pitch
 - Heading
 - Latitude and Longitude
+- Field of View (FOV/zoom)
+- Image dimensions
 
 ## Available Options
 
@@ -78,7 +80,11 @@ For the URL provided in the task, the parser will extract:
   "pitch": -7.653027784829149,
   "heading": 231.43853022351698,
   "lat": 51.8114178,
-  "lng": 19.4684854
+  "lng": 19.4684854,
+  "fov": 75,
+  "zoom": 0.40909090909090906,
+  "imageWidth": 13312,
+  "imageHeight": 6656
 }
 ```
 
@@ -88,6 +94,10 @@ For the URL provided in the task, the parser will extract:
 - **heading**: Camera direction (0 to 360 degrees, where 0 is north)
 - **lat**: Latitude coordinates
 - **lng**: Longitude coordinates
+- **fov**: Field of view (FOV) in degrees - determines how "zoomed in" the view is (10° = very zoomed in, 120° = very zoomed out)
+- **zoom**: Normalized zoom level (0.0 to 1.0) where 0 is most zoomed out and 1 is most zoomed in
+- **imageWidth**: Full resolution image width in pixels
+- **imageHeight**: Full resolution image height in pixels
 
 ## Notes
 - The parser works with most Google Street View URLs
