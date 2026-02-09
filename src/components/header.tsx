@@ -9,10 +9,10 @@ import { useState } from "react"
 interface HeaderProps {
   language: Language;
   handleLanguage: (data: Language) => void;
-  onToggleStreetView?: () => void;
+  // onToggleStreetView?: () => void;
 }
 
-const Header = ({ language, handleLanguage, onToggleStreetView }: HeaderProps) => {
+const Header = ({ language, handleLanguage }: HeaderProps) => {
   // const { language, setLanguage } = useLanguage();
 
   const [isMenuOpen, setMenuOpen] = useState(false)
