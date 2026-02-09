@@ -153,7 +153,7 @@ const InfoTooltip: React.FC<InfoTooltipProps> = ({
         onClick={() => onToggleVisibility(true)}
         title={getTranslation('additionalInfo', language)}
       >
-        <Info className="h-[12px] w-[12px]" />
+        <Info className="h-8 w-8 max-w-[12px] max-h-[12px]" />
       </Button>
     );
   }
@@ -190,8 +190,10 @@ const InfoTooltip: React.FC<InfoTooltipProps> = ({
             <X />
           </Button>
         </div>
-        <CardContent className="cursor-text pt-0 sm:p-6 rounded-t-none overflow-auto max-h-[300px] sm:max-h-[200px] md:max-h-[300px] flex flex-row gap-5 items-start">
-              <Info className="w-12 h-12 text-brown-500 dark:text-brown-300"/>
+        <CardContent className="cursor-text pt-0 sm:p-6 rounded-t-none overflow-auto max-h-[300px] sm:max-h-[200px] md:max-h-[300px] flex flex-row gap-[20px] items-start justify-between">
+              <div className="h-[20px] w-[20px] max-w-[20px] max-h-[20px]">
+                <Info className=" text-brown-500 dark:text-brown-300"/>
+              </div>
           {info ? (
             <div>
               <p className="text-brown-900 dark:text-brown-100 leading-relaxed text-sm">
