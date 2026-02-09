@@ -97,7 +97,7 @@ const Header = ({ language, handleLanguage, onToggleStreetView }: HeaderProps) =
 
             {/* Flags and theme toggle */}
             <div className="flex items-center gap-2 ml-auto">
-              <Button
+              {/* <Button
                 variant="ghost"
                 size="icon"
                 onClick={onToggleStreetView}
@@ -105,7 +105,7 @@ const Header = ({ language, handleLanguage, onToggleStreetView }: HeaderProps) =
                 title={getTranslation('streetView', language)}
               >
                 📍
-              </Button>
+              </Button> */}
               <div className="flex items-center gap-1 bg-brown-100 dark:bg-brown-500 rounded-lg p-1">
                 <Button
                   variant="ghost"
