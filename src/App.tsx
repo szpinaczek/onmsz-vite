@@ -15,7 +15,7 @@ import type { MapData, Language } from '@/types/map';
 import { RouteTable } from './components/route-table';
 import Footer from './components/footer';
 import StreetViewMinimal from './components/street-view-minimal';
-import { SpeedInsights } from "@vercel/speed-insights/next"
+// import { SpeedInsights } from "@vercel/speed-insights/next"
 
 interface MapComponentHandle {
   seekToTime: (time: number) => void;
@@ -346,7 +346,7 @@ function App() {
             <Footer />
           </div>
         </div>
-        <SpeedInsights />
+        {/* <SpeedInsights /> */}
       </ThemeProvider>
 
     </>
