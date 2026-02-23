@@ -356,7 +356,7 @@ const VideoPlayer = forwardRef<VideoPlayerHandle, VideoPlayerProps>(({ onTimeUpd
       <div className="relative w-full aspect-video bg-black rounded-t-lg overflow-hidden">
         {!isFullscreen && (
           <>
-            <video
+            {/* <video
               ref={videoRef}
               className="w-full h-full object-contain"
               poster="/images/splash-screen2.jpg"
@@ -372,7 +372,7 @@ const VideoPlayer = forwardRef<VideoPlayerHandle, VideoPlayerProps>(({ onTimeUpd
             >
               <source src="/onmsz_medium_compressed.mp4" type="video/mp4" />
               Your browser does not support the video tag.
-            </video>
+            </video> */}
             
             {/* Info Tooltip */}
             <InfoTooltip 
